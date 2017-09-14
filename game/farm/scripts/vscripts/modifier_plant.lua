@@ -26,13 +26,14 @@ function modifier_plant:OnIntervalThink()
 		local timeSpan = Time() - plant.plantTime
 		local progress = timeSpan / duration
 		if progress >= 1 then
-			plant:SetModel("models/corn_04.vmdl")
+			plant:SetModel("models/corn_low_03.vmdl")
+			plant:
 		elseif progress >= 0.75 then
-			plant:SetModel("models/corn_03.vmdl")
+			plant:SetModel("models/corn_low_02.vmdl")
 		elseif progress >= 0.5 then
-			plant:SetModel("models/corn_02.vmdl")
+			plant:SetModel("models/corn_low_01.vmdl")
 		elseif progress >= 0.25 then
-			plant:SetModel("models/corn_00.vmdl")
+			plant:SetModel("models/corn_low_00.vmdl")
 		end
 		if progress >= 1 then
 			self:StartIntervalThink(-1)
