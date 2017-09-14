@@ -1,0 +1,17 @@
+"DOTAAbilities"
+{
+	"item_seed"
+	{
+		"ID"							"1250"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_seed"
+		"AbilityTextureName"			"item_tango_single"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"ItemDisplayCharges"			"1"
+		"ItemInitialCharges"			"1"
+		"ItemRequiresCharges"			"1"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+	}
+}

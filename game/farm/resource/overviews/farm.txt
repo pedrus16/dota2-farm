@@ -1,0 +1,8 @@
+farm
+{
+	material materials/overviews/farm.vmat
+	pos_x -1088
+	pos_y 1024
+	scale 2.063
+}
+
