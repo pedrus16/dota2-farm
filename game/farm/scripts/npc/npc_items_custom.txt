@@ -20,6 +20,7 @@
 		"ID"							"1251"
 		"BaseClass"						"item_datadriven"
 		"AbilityTextureName"			"item_tango_single"
+		"Model"							"models/item_corn_low.vmdl"
 
 		"ItemDisplayCharges"			"1"
 		"ItemInitialCharges"			"1"
