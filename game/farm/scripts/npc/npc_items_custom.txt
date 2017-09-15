@@ -14,4 +14,19 @@
 		"ItemStackable"					"1"
 		"ItemPermanent"					"0"
 	}
+
+	"item_harvest_corn"
+	{
+		"ID"							"1251"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_tango_single"
+
+		"ItemDisplayCharges"			"1"
+		"ItemInitialCharges"			"1"
+		"ItemRequiresCharges"			"1"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemCost"						"10"
+	}
 }

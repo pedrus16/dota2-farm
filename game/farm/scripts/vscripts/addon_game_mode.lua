@@ -30,6 +30,7 @@ function CAddonFarmGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCameraSmoothCountOverride( 2 )
 	GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_meepo" )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
+	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(CAddonFarmGameMode, "OrderFilter"), self)
 end
 
 -- Evaluate the state of the game
@@ -40,4 +41,25 @@ function CAddonFarmGameMode:OnThink()
 		return nil
 	end
 	return 1
+end
+
+
+function CAddonFarmGameMode:OrderFilter(event)
+
+	if event.order_type == DOTA_UNIT_ORDER_MOVE_TO_TARGET then
+		local hTarget = EntIndexToHScript(event.entindex_target)
+		if hTarget then
+			-- TODO CalcDistanceBetweenEntityOBB to prevent harvesting from the other side of the map
+			-- local hUnit = 
+			local hModifier = hTarget:FindModifierByName("modifier_plant")
+			if hModifier then
+				if hModifier.progress >= 1 then
+					hModifier:DropHarvest()
+				end
+			end
+		end
+	end
+
+	return true
+
 end

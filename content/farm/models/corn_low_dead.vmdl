@@ -5,8 +5,8 @@
 		m_meshList = 
 		[
 			{
-				m_meshName = "corn_low_03"
-				m_meshFile = "models/corn_low_03.fbx"
+				m_meshName = "corn_low_dead"
+				m_meshFile = "models/corn_low_dead.fbx"
 				m_materialSearchPath = ""
 				m_bSkinParentedObjects = true
 				m_bLegacySkinParentedTransforms = false
@@ -62,8 +62,8 @@
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
 								m_sBoneName = "Bone"
-								m_vMinBounds = [ -14.114092, 0.0, -13.062221 ]
-								m_vMaxBounds = [ 13.447184, 65.839653, 12.987682 ]
+								m_vMinBounds = [ -12.670938, 0.0, -12.980803 ]
+								m_vMaxBounds = [ 13.013746, 83.991402, 12.863008 ]
 								m_bTranslationOnly = false
 								m_cRenderColor = [ 0, 0, 0, 0 ]
 							},
@@ -74,31 +74,7 @@
 			}
 		},
 	]
-	m_pAttachmentLists = 
-	[
-		{
-			m_pObject = 
-			{
-				m_name = ""
-				m_attachments = 
-				[
-					{
-						m_name = "root"
-						m_influences = 
-						[
-							{
-								m_influenceName = "Bone"
-								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
-								m_vRotationOffset = [ -0.000061, 0.000003, -0.000005 ]
-								m_flWeight = 1.0
-								m_bRoot = false
-							},
-						]
-					},
-				]
-			}
-		},
-	]
+	m_pAttachmentLists = [  ]
 	m_pAnimGroup = 
 	{
 		m_pObject = null
@@ -136,7 +112,7 @@
 		[
 			{
 				m_sSearchMaterial = "*"
-				m_sReplaceMaterial = "materials/corn_low_03.vmat"
+				m_sReplaceMaterial = "materials/corn_low_dead.vmat"
 			},
 		]
 	}
