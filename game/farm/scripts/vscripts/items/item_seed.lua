@@ -1,5 +1,5 @@
 item_seed = class ({})
-LinkLuaModifier( "modifier_plant", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_plant", "modifiers/modifier_plant.lua", LUA_MODIFIER_MOTION_NONE )
 
 function item_seed:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
@@ -43,6 +43,7 @@ function item_seed:OnSpellStart()
 
 	if hTarget:GetUnitName() == "npc_dota_creature_soil" then
 		hTarget.planted = CreateUnitByName("npc_dota_creature_plant_corn", hTarget:GetAbsOrigin(), false, hCaster, nil, hCaster:GetTeam())
+		hTarget.planted.soil = hTarget
 		hTarget.planted:AddNewModifier( hCaster, nil, "modifier_plant", {})
 		hTarget.planted:SetAngles(0, math.random(360), 0)
 	end

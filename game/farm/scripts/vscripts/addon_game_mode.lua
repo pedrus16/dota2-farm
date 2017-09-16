@@ -46,19 +46,22 @@ end
 
 function CAddonFarmGameMode:OrderFilter(event)
 
-	if event.order_type == DOTA_UNIT_ORDER_MOVE_TO_TARGET then
-		local hTarget = EntIndexToHScript(event.entindex_target)
-		if hTarget then
-			-- TODO CalcDistanceBetweenEntityOBB to prevent harvesting from the other side of the map
-			-- local hUnit = 
-			local hModifier = hTarget:FindModifierByName("modifier_plant")
-			if hModifier then
-				if hModifier.progress >= 1 then
-					hModifier:DropHarvest()
-				end
-			end
-		end
+	if event.order_type ~= DOTA_UNIT_ORDER_MOVE_TO_TARGET then return true end
+	local hTarget = EntIndexToHScript(event.entindex_target)
+	if hTarget == nil then return true end
+	local distance = nil
+	local hUnit = nil
+	for _, entID in pairs(event.units) do
+		hUnit = EntIndexToHScript(entID)
+		distance = CalcDistanceBetweenEntityOBB(hUnit, hTarget)
+		break
 	end
+	if distance == nil or distance > 128 then return true end
+	local hModifier = hTarget:FindModifierByName("modifier_plant")
+	if hModifier == nil then return true end
+	if hModifier:GetProgress() < 1 then return true end
+
+	hModifier:DropHarvest(hUnit:GetOwner())
 
 	return true
 

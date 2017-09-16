@@ -62,8 +62,8 @@
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
 								m_sBoneName = "Bone"
-								m_vMinBounds = [ -3.458368, -0.082989, -9.575281 ]
-								m_vMaxBounds = [ 3.520503, 7.811879, 10.325729 ]
+								m_vMinBounds = [ -17.114199, -0.625602, -28.725838 ]
+								m_vMaxBounds = [ 17.421682, 58.888603, 30.977188 ]
 								m_bTranslationOnly = false
 								m_cRenderColor = [ 0, 0, 0, 0 ]
 							},

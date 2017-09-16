@@ -1,5 +1,7 @@
 farmer_hoe = class ({})
-LinkLuaModifier( "modifier_soil", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_soil", "modifiers/modifier_soil.lua", LUA_MODIFIER_MOTION_NONE )
+
+TILE_SIZE = 64
 
 function farmer_hoe:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_POINT	
@@ -21,13 +23,13 @@ function farmer_hoe:CastFilterResultLocation( vLocation )
  		return UF_SUCCESS
  	end
 
-	vLocation.x = math.floor(vLocation.x / 128) * 128 + 64
-	vLocation.y = math.floor(vLocation.y / 128) * 128 + 64
+	vLocation.x = math.floor(vLocation.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
+	vLocation.y = math.floor(vLocation.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
 
 	unitsInTile = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
 									vLocation,
 									nil,
-									64,
+									TILE_SIZE * 0.5,
 									DOTA_UNIT_TARGET_TEAM_BOTH,
 									DOTA_UNIT_TARGET_BASIC,
 									DOTA_UNIT_TARGET_FLAG_NONE,
@@ -49,8 +51,8 @@ function farmer_hoe:GetCustomCastErrorLocation( vLocation )
  		return ""
  	end
 
-	vLocation.x = math.floor(vLocation.x / 128) * 128 + 64
-	vLocation.y = math.floor(vLocation.y / 128) * 128 + 64
+	vLocation.x = math.floor(vLocation.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
+	vLocation.y = math.floor(vLocation.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
 
 	unitsInTile = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
 									vLocation,
@@ -76,9 +78,10 @@ function farmer_hoe:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local vLocation = self:GetCursorPosition()
 
-	vLocation.x = math.floor(vLocation.x / 128) * 128 + 64
-	vLocation.y = math.floor(vLocation.y / 128) * 128 + 64
+	vLocation.x = math.floor(vLocation.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
+	vLocation.y = math.floor(vLocation.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
 
 	local unit = CreateUnitByName("npc_dota_creature_soil", vLocation, false, hCaster, nil, hCaster:GetTeam())
+	unit:SetAngles(0, RandomInt(1, 360), 0)
 	unit:AddNewModifier( hCaster, nil, "modifier_soil", {})
 end

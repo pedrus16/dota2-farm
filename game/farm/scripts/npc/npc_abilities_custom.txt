@@ -12,6 +12,20 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile" 					"abilities/ability_hoe"
+		"AbilityTextureName"			"nyx_assassin_burrow"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	}
+
+	//=================================================================================================================
+	// Farmer: Watering Can Ability
+	//=================================================================================================================
+	"farmer_watering"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile" 					"abilities/ability_watering"
+		"AbilityTextureName"			"naga_siren_rip_tide"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 	}
 }

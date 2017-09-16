@@ -13,7 +13,7 @@
 		"Model"						"models/heroes/nerubian_assassin/mound.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"Level"						"1"
-		"ModelScale" 				"0.8"
+		"ModelScale" 				"0.6"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -38,7 +38,7 @@
 
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"64"
+		"RingRadius"				"40"
 		"HealthBarOffset"			"170"
 
 		// Bounty
