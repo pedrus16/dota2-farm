@@ -5,7 +5,7 @@ function modifier_plant:CheckState()
 	local state = {
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = not hPlant.harvest or hPlant.harvest <= 0,
+		[MODIFIER_STATE_UNSELECTABLE] = not hPlant.hasHarvest,
 	}
  
 	return state
@@ -26,14 +26,17 @@ end
 function modifier_plant:OnIntervalThink()
 	if IsServer() then
 		local hPlant = self:GetParent()
-		local duration = 5
+		local duration = 1
 		local delta = Time() - self.tick
 		self.tick = Time()
 		local growthRate = self:GetSoilGrowthRate()
 		hPlant.progress = hPlant.progress + (delta * growthRate) / duration
 		if hPlant.progress >= 1 then
 			hPlant:SetModel("models/corn_low_03_full.vmdl")
-			hPlant.harvest = 3
+			hPlant.hasHarvest = true
+			for i=1, 3 do
+				hPlant:AddItemByName("item_harvest_corn")
+			end
 			self:StartIntervalThink(-1)
 		elseif hPlant.progress >= 0.75 then
 			hPlant:SetModel("models/corn_low_02.vmdl")
@@ -46,18 +49,16 @@ function modifier_plant:OnIntervalThink()
 end
 
 
-function modifier_plant:DropHarvest(hOwner)
+function modifier_plant:DropHarvest()
 	local hPlant = self:GetParent()
-	if hPlant.harvest <= 0 then return end
-	for i=1, hPlant.harvest do
-		print(hOwner)
-		local hItem = CreateItem("item_harvest_corn", hOwner, hOwner)
-		local hPhysItem = CreateItemOnPositionForLaunch(hPlant:GetAbsOrigin() + Vector(0, 0, RandomInt(64, 128)), hItem)
-		hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
-		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, hPlant:GetAbsOrigin() + RandomVector(1):Normalized() * 64)
-	end
+	if not hPlant.hasHarvest then return end
+	local hItem = hPlant:GetItemInSlot(0)
+	if hItem == nil then return end
+	local hPhysItem = CreateItemOnPositionSync(hPlant:GetAbsOrigin(), hItem)
+	hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
+	hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, hPlant:GetAbsOrigin() + RandomVector(1):Normalized() * 64)
 	hPlant:SetModel("models/corn_low_03.vmdl")
-	hPlant.harvest = 0
+	hPlant.hasHarvest = false
 end
 
 

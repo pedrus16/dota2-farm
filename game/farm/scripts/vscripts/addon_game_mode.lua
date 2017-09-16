@@ -31,6 +31,8 @@ function CAddonFarmGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_meepo" )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(CAddonFarmGameMode, "OrderFilter"), self)
+	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(CAddonFarmGameMode, "InventoryFilter"), self)
+	ListenToGameEvent("npc_spawned", Dynamic_Wrap(CAddonFarmGameMode, "OnNPCSpawned"), self)
 end
 
 -- Evaluate the state of the game
@@ -45,7 +47,6 @@ end
 
 
 function CAddonFarmGameMode:OrderFilter(event)
-
 	if event.order_type ~= DOTA_UNIT_ORDER_MOVE_TO_TARGET then return true end
 	local hTarget = EntIndexToHScript(event.entindex_target)
 	if hTarget == nil then return true end
@@ -61,8 +62,22 @@ function CAddonFarmGameMode:OrderFilter(event)
 	if hModifier == nil then return true end
 	if hModifier:GetProgress() < 1 then return true end
 
-	hModifier:DropHarvest(hUnit:GetOwner())
+	hModifier:DropHarvest()
 
 	return true
+end
 
+
+function CAddonFarmGameMode:InventoryFilter(event)
+	local item = EntIndexToHScript(event.item_entindex_const)
+	print(item:GetOwner())
+	return true
+end
+
+
+function CAddonFarmGameMode:OnNPCSpawned( event )
+	local hNPC = EntIndexToHScript(event.entindex)
+	if hNPC:IsRealHero() then
+		hNPC:HeroLevelUp(false)
+	end
 end

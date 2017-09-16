@@ -32,8 +32,8 @@
 		"ItemRequiresCharges"			"1"
 		"ItemStackable"					"1"
 		"ItemSellable"					"1"
+		"ItemPermanent"					"1"
 		"ItemPurchasable"				"0"
-		"ItemPermanent"					"0"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemCost"						"10"
 	}

@@ -13,7 +13,7 @@
 		"Model"						"models/heroes/nerubian_assassin/mound.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"Level"						"1"
-		"ModelScale" 				"0.6"
+		"ModelScale" 				"0.5"
 
 		// Abilities
 		//----------------------------------------------------------------
