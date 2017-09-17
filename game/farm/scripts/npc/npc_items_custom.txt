@@ -5,7 +5,7 @@
 		"ID"							"1250"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_seed"
-		"AbilityTextureName"			"item_tango_single"
+		"AbilityTextureName"			"item_seed_corn"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		"ItemDisplayCharges"			"1"
@@ -24,7 +24,7 @@
 		"ID"							"1251"
 		"BaseClass"						"item_datadriven"
 		"Model"							"models/item_corn_low.vmdl"
-		"AbilityTextureName"			"item_tango_single"
+		"AbilityTextureName"			"item_harvest_corn"
 		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"ItemDisplayCharges"			"1"

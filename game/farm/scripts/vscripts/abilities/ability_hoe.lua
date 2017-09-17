@@ -4,7 +4,7 @@ LinkLuaModifier( "modifier_soil", "modifiers/modifier_soil.lua", LUA_MODIFIER_MO
 TILE_SIZE = 64
 
 function farmer_hoe:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_POINT	
+	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 end
 
 
@@ -14,7 +14,7 @@ end
 
 
 function farmer_hoe:GetCastPoint()
-	return 0.1
+	return 0.4
 end
 
 
@@ -23,8 +23,15 @@ function farmer_hoe:CastFilterResultLocation( vLocation )
  		return UF_SUCCESS
  	end
 
-	vLocation.x = math.floor(vLocation.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
-	vLocation.y = math.floor(vLocation.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
+	vLocation.x = GridNav:GridPosToWorldCenterX(GridNav:WorldToGridPosX(vLocation.x))
+	vLocation.y = GridNav:GridPosToWorldCenterY(GridNav:WorldToGridPosY(vLocation.y))
+	if GridNav:IsBlocked(vLocation) then
+		return UF_FAIL_CUSTOM
+	end
+	local hCaster = self:GetCaster()
+	if not GridNav:CanFindPath(hCaster:GetAbsOrigin(), vLocation) then
+		return UF_FAIL_CUSTOM
+	end
 
 	unitsInTile = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
 									vLocation,
@@ -51,8 +58,16 @@ function farmer_hoe:GetCustomCastErrorLocation( vLocation )
  		return ""
  	end
 
-	vLocation.x = math.floor(vLocation.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
-	vLocation.y = math.floor(vLocation.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
+	vLocation.x = GridNav:GridPosToWorldCenterX(GridNav:WorldToGridPosX(vLocation.x))
+	vLocation.y = GridNav:GridPosToWorldCenterY(GridNav:WorldToGridPosY(vLocation.y))
+	local vGridPos = Vector(GridNav:WorldToGridPosX(vLocation.x), GridNav:WorldToGridPosY(vLocation.y), 0)
+	if GridNav:IsBlocked(vLocation) then
+		return "#dota_hud_error_location_not_clear"
+	end
+	local hCaster = self:GetCaster()
+	if not GridNav:CanFindPath(hCaster:GetAbsOrigin(), vLocation) then
+		return "#dota_hud_error_location_cant_reach"
+	end
 
 	unitsInTile = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
 									vLocation,
@@ -78,10 +93,13 @@ function farmer_hoe:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local vLocation = self:GetCursorPosition()
 
-	vLocation.x = math.floor(vLocation.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
-	vLocation.y = math.floor(vLocation.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE * 0.5
+	vLocation.x = GridNav:GridPosToWorldCenterX(GridNav:WorldToGridPosX(vLocation.x))
+	vLocation.y = GridNav:GridPosToWorldCenterY(GridNav:WorldToGridPosY(vLocation.y))
 
-	local unit = CreateUnitByName("npc_dota_creature_soil", vLocation, false, hCaster, nil, hCaster:GetTeam())
-	unit:SetAngles(0, RandomInt(1, 360), 0)
-	unit:AddNewModifier( hCaster, nil, "modifier_soil", {})
+	local hUnit = CreateUnitByName("npc_dota_creature_soil", vLocation, false, hCaster, nil, hCaster:GetTeam())
+	hUnit:SetAngles(0, RandomInt(1, 360), 0)
+	hUnit:AddNewModifier( hCaster, nil, "modifier_soil", {})
+	local iParticleId = ParticleManager:CreateParticle("particles/items2_fx/ward_spawn_generic.vpcf", PATTACH_ABSORIGIN, hUnit)
+	-- Randomize the effect's rotation
+	ParticleManager:SetParticleControl(iParticleId, 1, Vector(0, RandomFloat(1, 360), 0))
 end

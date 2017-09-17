@@ -52,11 +52,15 @@ end
 function modifier_plant:DropHarvest()
 	local hPlant = self:GetParent()
 	if not hPlant.hasHarvest then return end
-	local hItem = hPlant:GetItemInSlot(0)
-	if hItem == nil then return end
-	local hPhysItem = CreateItemOnPositionSync(hPlant:GetAbsOrigin(), hItem)
-	hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
-	hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, hPlant:GetAbsOrigin() + RandomVector(1):Normalized() * 64)
+	local hHarvest = hPlant:GetItemInSlot(0)
+	if hHarvest == nil then return end
+	for i=1, hHarvest:GetCurrentCharges() do
+		local hItem = CreateItem(hHarvest:GetName(), nil, nil)
+		local hPhysItem = CreateItemOnPositionSync(hPlant:GetAbsOrigin(), hItem)
+		hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
+		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, hPlant:GetAbsOrigin() + RandomVector(1):Normalized() * 64)
+	end
+	hPlant:RemoveItem(hHarvest)
 	hPlant:SetModel("models/corn_low_03.vmdl")
 	hPlant.hasHarvest = false
 end

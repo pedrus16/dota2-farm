@@ -46,7 +46,7 @@ function CAddonFarmGameMode:OnThink()
 end
 
 
-function CAddonFarmGameMode:OrderFilter(event)
+function CAddonFarmGameMode:OrderFilter( event )
 	if event.order_type ~= DOTA_UNIT_ORDER_MOVE_TO_TARGET then return true end
 	local hTarget = EntIndexToHScript(event.entindex_target)
 	if hTarget == nil then return true end
@@ -68,9 +68,12 @@ function CAddonFarmGameMode:OrderFilter(event)
 end
 
 
-function CAddonFarmGameMode:InventoryFilter(event)
-	local item = EntIndexToHScript(event.item_entindex_const)
-	print(item:GetOwner())
+function CAddonFarmGameMode:InventoryFilter( event )
+	local hItem = EntIndexToHScript(event.item_entindex_const)
+	local hParent = EntIndexToHScript(event.inventory_parent_entindex_const)
+	if hItem:GetOwner() == nil then
+		hItem:SetOwner(hParent)
+	end
 	return true
 end
 

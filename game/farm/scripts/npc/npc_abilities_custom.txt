@@ -26,6 +26,6 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile" 					"abilities/ability_watering"
 		"AbilityTextureName"			"naga_siren_rip_tide"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	}
 }
