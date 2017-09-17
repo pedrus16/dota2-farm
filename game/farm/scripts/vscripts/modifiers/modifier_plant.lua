@@ -26,24 +26,24 @@ end
 function modifier_plant:OnIntervalThink()
 	if IsServer() then
 		local hPlant = self:GetParent()
-		local duration = 1
+		local duration = hPlant.plantDescription.duration
 		local delta = Time() - self.tick
 		self.tick = Time()
 		local growthRate = self:GetSoilGrowthRate()
 		hPlant.progress = hPlant.progress + (delta * growthRate) / duration
 		if hPlant.progress >= 1 then
-			hPlant:SetModel("models/corn_low_03_full.vmdl")
+			hPlant:SetModel(hPlant.plantDescription.grownModel)
 			hPlant.hasHarvest = true
-			for i=1, 3 do
-				hPlant:AddItemByName("item_harvest_corn")
+			for i=1, hPlant.plantDescription.harvestCount do
+				hPlant:AddItemByName(hPlant.plantDescription.harvestItem)
 			end
 			self:StartIntervalThink(-1)
 		elseif hPlant.progress >= 0.75 then
-			hPlant:SetModel("models/corn_low_02.vmdl")
+			hPlant:SetModel(hPlant.plantDescription.models["3"])
 		elseif hPlant.progress >= 0.5 then
-			hPlant:SetModel("models/corn_low_01.vmdl")
+			hPlant:SetModel(hPlant.plantDescription.models["2"])
 		elseif hPlant.progress >= 0.25 then
-			hPlant:SetModel("models/corn_low_00.vmdl")
+			hPlant:SetModel(hPlant.plantDescription.models["1"])
 		end
 	end
 end
@@ -60,9 +60,14 @@ function modifier_plant:DropHarvest()
 		hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
 		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, hPlant:GetAbsOrigin() + RandomVector(1):Normalized() * 64)
 	end
-	hPlant:RemoveItem(hHarvest)
-	hPlant:SetModel("models/corn_low_03.vmdl")
-	hPlant.hasHarvest = false
+	if hPlant.plantDescription.permanent then
+		hPlant:RemoveItem(hHarvest)
+		hPlant:SetModel(hPlant.plantDescription.emptyModel)
+		hPlant.hasHarvest = false
+	else
+		hPlant.soil.planted = nil
+		hPlant:Destroy()
+	end
 end
 
 

@@ -1,10 +1,10 @@
 "DOTAAbilities"
 {
-	"item_seed"
+	"item_seed_corn"
 	{
 		"ID"							"1250"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_seed"
+		"ScriptFile"					"items/item_seed_corn"
 		"AbilityTextureName"			"item_seed_corn"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
@@ -37,4 +37,43 @@
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemCost"						"10"
 	}
+
+	"item_seed_potato"
+	{
+		"ID"							"1252"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_seed_potato"
+		"AbilityTextureName"			"item_seed_potato"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"ItemDisplayCharges"			"1"
+		"ItemInitialCharges"			"1"
+		"ItemRequiresCharges"			"1"
+		"ItemStackable"					"1"
+		"ItemSellable"					"1"
+		"ItemPurchasable"				"1"
+		"ItemPermanent"					"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemCost"						"5"
+	}
+
+	"item_harvest_potato"
+	{
+		"ID"							"1253"
+		"BaseClass"						"item_datadriven"
+		"Model"							"models/potato_harvest.vmdl"
+		"AbilityTextureName"			"item_seed_potato"
+		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDisplayCharges"			"1"
+		"ItemInitialCharges"			"1"
+		"ItemRequiresCharges"			"1"
+		"ItemStackable"					"1"
+		"ItemSellable"					"1"
+		"ItemPermanent"					"1"
+		"ItemPurchasable"				"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemCost"						"10"
+	}
+
 }

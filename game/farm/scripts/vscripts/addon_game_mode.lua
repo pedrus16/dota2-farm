@@ -33,6 +33,7 @@ function CAddonFarmGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(CAddonFarmGameMode, "OrderFilter"), self)
 	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(CAddonFarmGameMode, "InventoryFilter"), self)
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(CAddonFarmGameMode, "OnNPCSpawned"), self)
+	self.units = LoadKeyValues("scripts/npc/npc_units_custom.txt")
 end
 
 -- Evaluate the state of the game
@@ -83,4 +84,16 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 	if hNPC:IsRealHero() then
 		hNPC:HeroLevelUp(false)
 	end
+	if self.units[hNPC:GetUnitName()] == nil then return end
+	local farmKV = self.units[hNPC:GetUnitName()]["Farm"]
+	if farmKV == nil then return end
+	hNPC.plantDescription = {
+		duration = farmKV.GrowthDuration,
+		harvestItem = farmKV.Harvest,
+		harvestCount = farmKV.HarvestCount,
+		models = farmKV.GrowthModels,
+		grownModel = farmKV.FullyGrownModel,
+		emptyModel = farmKV.HarvestedModel,
+		permanent = farmKV.Permanent == "1"
+	}
 end

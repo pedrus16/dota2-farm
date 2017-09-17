@@ -15,13 +15,6 @@
 		"Level"						"1"
 		"ModelScale" 				"0.5"
 
-		// Abilities
-		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1
-		"Ability2"					""			// Ability 2
-		"Ability3"					""			// Ability 3
-		"Ability4"					""			// Ability 4
-
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"0"			// Physical protection.
@@ -29,12 +22,6 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"0"		// Damage range min.
-		"AttackDamageMax"			"0"		// Damage range max.
-		"AttackRate"				"0"		// Speed of attack.
-		"AttackAnimationPoint"		"0"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"0"		// Range within a target can be acquired.
-		"AttackRange"				"0"		// Range within a target can be attacked.
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -49,8 +36,7 @@
 
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
-		"MovementSpeed"				"0"		// Speed.			
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"		
 
 		// Status
 		//----------------------------------------------------------------
@@ -67,24 +53,10 @@
 		// Team
 		//----------------------------------------------------------------
 		"TeamName"					"DOTA_TEAM_GOODGUYS"						// Team name.
-
-		// Creature Data
-		//----------------------------------------------------------------
-		"Creature"
-		{
-			//Level Up
-			"HPGain"					"0"
-			"DamageGain"				"0"
-			"ArmorGain"					"0"
-			"MagicResistGain"			"0"
-			"MoveSpeedGain"				"0"
-			"BountyGain"				"0"
-			"XPGain"					"0"
-		}
 	}
 
 	//=================================================================================	
-	// Creature: Seed Corn
+	// Creature: Plant Corn
 	//=================================================================================
 	"npc_dota_creature_plant_corn"	
 	{
@@ -95,13 +67,6 @@
 		"Level"						"1"
 		"ModelScale" 				"1.6"
 
-		// Abilities
-		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1
-		"Ability2"					""			// Ability 2
-		"Ability3"					""			// Ability 3
-		"Ability4"					""			// Ability 4
-
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"0"			// Physical protection.
@@ -109,12 +74,6 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"0"		// Damage range min.
-		"AttackDamageMax"			"0"		// Damage range max.
-		"AttackRate"				"0"		// Speed of attack.
-		"AttackAnimationPoint"		"0"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"0"		// Range within a target can be acquired.
-		"AttackRange"				"0"		// Range within a target can be attacked.
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -130,7 +89,6 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
-		"MovementSpeed"				"0"		// Speed.			
 
 		// Status
 		//----------------------------------------------------------------
@@ -148,18 +106,88 @@
 		//----------------------------------------------------------------
 		"TeamName"					"DOTA_TEAM_GOODGUYS"						// Team name.
 
-		// Creature Data
-		//----------------------------------------------------------------
-		"Creature"
+		"Farm"
 		{
-			//Level Up
-			"HPGain"					"0"
-			"DamageGain"				"0"
-			"ArmorGain"					"0"
-			"MagicResistGain"			"0"
-			"MoveSpeedGain"				"0"
-			"BountyGain"				"0"
-			"XPGain"					"0"
+			"Permanent"				"1"
+			"Harvest"				"item_harvest_corn"
+			"HarvestCount"			"3"
+			"GrowthDuration"		"4"
+			"GrowthModels"
+			{
+				"1"					"models/corn_low_00.vmdl"
+				"2"					"models/corn_low_01.vmdl"
+				"3"					"models/corn_low_02.vmdl"
+			}
+			"FullyGrownModel"		"models/corn_low_03_full.vmdl"
+			"HarvestedModel"		"models/corn_low_03.vmdl"
+		}
+	}
+
+	//=================================================================================	
+	// Creature: Plant Potato
+	//=================================================================================
+	"npc_dota_creature_plant_potato"	
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/potato_harvest.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"Level"						"1"
+		"ModelScale" 				"1"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"40"
+		"HealthBarOffset"			"170"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"		
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1"		// Base health.
+		"StatusHealthRegen"			"0"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"						// Team name.
+
+		"Farm"
+		{
+			"Permanent"				"0"
+			"Harvest"				"item_harvest_potato"
+			"HarvestCount"			"3"
+			"GrowthDuration"		"5"
+			"GrowthModels"
+			{
+				"1"					"models/potato_00.vmdl"
+				"2"					"models/potato_00.vmdl"
+				"3"					"models/potato_00.vmdl"
+			}
+			"FullyGrownModel"		"models/potato_00.vmdl"
+			"HarvestedModel"		"models/potato_00.vmdl"
 		}
 	}
 }
