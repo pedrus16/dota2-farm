@@ -28,4 +28,18 @@
 		"AbilityTextureName"			"naga_siren_rip_tide"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	}
+
+	//=================================================================================================================
+	// Farmer: Lumberjack Ability
+	//=================================================================================================================
+	"farmer_lumberjack"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile" 					"abilities/ability_lumberjack"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
+		"AbilityTextureName"			"troll_warlord_berserkers_rage"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	}
 }

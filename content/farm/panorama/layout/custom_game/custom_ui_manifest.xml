@@ -1,6 +1,6 @@
 <root>
 	<scripts>
-		<!-- <include src="file://{resources}/scripts/custom_game/main.js" />  -->
+		<include src="file://{resources}/scripts/custom_game/main.js" /> 
 	</scripts> 
 	<Panel>
 		<!-- Use the Valve-authored multi-team-compatible scoreboard, instead of the default Dota 2-team scoreboard. -->

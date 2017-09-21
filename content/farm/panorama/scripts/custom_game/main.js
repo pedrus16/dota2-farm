@@ -1,11 +1,13 @@
-// This is an example of how to use the GameUI.SetMouseCallback function
-GameUI.SetMouseCallback( function( eventName, arg ) {
-	var CONSUME_EVENT = true;
+GameUI.SetMouseCallback(function(eventName, arg) {
 	var CONTINUE_PROCESSING_EVENT = false;
+	var LEFT_CLICK = (arg === 0);
+    var RIGHT_CLICK = (arg === 1);
 
-	if ( GameUI.GetClickBehaviors() !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE ) {
-		return CONTINUE_PROCESSING_EVENT;
+	if (eventName === "pressed" || eventName === "doublepressed") {
+		if (RIGHT_CLICK) {
+			e = GameUI.FindScreenEntities(GameUI.GetCursorPosition());
+			$.Msg(e, GameUI.GetCursorPosition(), GameUI.GetClickBehaviors());
+		}
 	}
-
 	return CONTINUE_PROCESSING_EVENT;
-} );
+});

@@ -4,7 +4,7 @@ LinkLuaModifier( "modifier_soil", "modifiers/modifier_soil.lua", LUA_MODIFIER_MO
 TILE_SIZE = 64
 
 function farmer_hoe:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
+	return bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING)
 end
 
 

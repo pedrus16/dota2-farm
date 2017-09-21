@@ -83,6 +83,15 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 	local hNPC = EntIndexToHScript(event.entindex)
 	if hNPC:IsRealHero() then
 		hNPC:HeroLevelUp(false)
+		if hNPC:HasAbility("farmer_hoe") then
+			hNPC:FindAbilityByName("farmer_hoe"):SetLevel(1)
+		end
+		if hNPC:HasAbility("farmer_watering") then
+			hNPC:FindAbilityByName("farmer_watering"):SetLevel(1)
+		end
+		if hNPC:HasAbility("farmer_lumberjack") then
+			hNPC:FindAbilityByName("farmer_lumberjack"):SetLevel(1)
+		end
 	end
 	if self.units[hNPC:GetUnitName()] == nil then return end
 	local farmKV = self.units[hNPC:GetUnitName()]["Farm"]
