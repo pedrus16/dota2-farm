@@ -37,6 +37,6 @@ function farmer_watering:OnSpellStart()
 
 	if hTarget:GetUnitName() == "npc_dota_creature_soil" then
 		local hModifier = hTarget:AddNewModifier( hCaster, nil, "modifier_watered", {})
-		hModifier:SetDuration(30, true)
+		hModifier:SetDuration(self:GetSpecialValueFor("duration"), true)
 	end
 end

@@ -10,7 +10,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/nerubian_assassin/mound.vmdl"	// Model.
+		"Model"						"models/soil.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"Level"						"1"
 		"ModelScale" 				"0.5"
@@ -111,7 +111,7 @@
 			"Permanent"				"1"
 			"Harvest"				"item_harvest_corn"
 			"HarvestCount"			"3"
-			"GrowthDuration"		"4"
+			"GrowthDuration"		"600"
 			"GrowthModels"
 			{
 				"1"					"models/corn_low_00.vmdl"
@@ -178,16 +178,16 @@
 		{
 			"Permanent"				"0"
 			"Harvest"				"item_harvest_potato"
-			"HarvestCount"			"3"
-			"GrowthDuration"		"5"
+			"HarvestCount"			"2"
+			"GrowthDuration"		"300"
 			"GrowthModels"
 			{
 				"1"					"models/potato_00.vmdl"
 				"2"					"models/potato_00.vmdl"
 				"3"					"models/potato_00.vmdl"
 			}
-			"FullyGrownModel"		"models/potato_00.vmdl"
-			"HarvestedModel"		"models/potato_00.vmdl"
+			"FullyGrownModel"		"models/potato_01.vmdl"
+			"HarvestedModel"		"models/potato_01.vmdl"
 		}
 	}
 }

@@ -27,12 +27,15 @@ function CAddonFarmGameMode:InitGameMode()
 	GameRules:SetGoldTickTime( 999999.0 )
 	GameRules:SetGoldPerTick( 0 )
 	GameRules:SetHeroRespawnEnabled( false )
+	GameRules:SetTreeRegrowTime(-1)
+	GameRules:SetPreGameTime(0)
 	GameRules:GetGameModeEntity():SetCameraSmoothCountOverride( 2 )
 	GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_meepo" )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(CAddonFarmGameMode, "OrderFilter"), self)
 	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(CAddonFarmGameMode, "InventoryFilter"), self)
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(CAddonFarmGameMode, "OnNPCSpawned"), self)
+	ListenToGameEvent("tree_cut", Dynamic_Wrap(CAddonFarmGameMode, "OnTreeCut"), self)
 	self.units = LoadKeyValues("scripts/npc/npc_units_custom.txt")
 end
 
@@ -105,4 +108,14 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 		emptyModel = farmKV.HarvestedModel,
 		permanent = farmKV.Permanent == "1"
 	}
+end
+
+function CAddonFarmGameMode:OnTreeCut( event )
+	local vOrigin = Vector(event.tree_x, event.tree_y)
+	for i=1, 3 do
+		local hItem = CreateItem("item_wood_log", nil, nil)
+		local hPhysItem = CreateItemOnPositionSync(vOrigin, hItem)
+		hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
+		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, vOrigin + RandomVector(1):Normalized() * 16)
+	end
 end

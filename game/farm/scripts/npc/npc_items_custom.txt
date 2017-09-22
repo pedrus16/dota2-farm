@@ -76,4 +76,23 @@
 		"ItemCost"						"10"
 	}
 
+	"item_wood_log"
+	{
+		"ID"							"1254"
+		"BaseClass"						"item_datadriven"
+		"Model"							"models/props_gameplay/branch.vmdl"
+		"AbilityTextureName"			"item_branches"
+		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDisplayCharges"			"1"
+		"ItemInitialCharges"			"1"
+		"ItemRequiresCharges"			"1"
+		"ItemStackable"					"1"
+		"ItemSellable"					"1"
+		"ItemPermanent"					"1"
+		"ItemPurchasable"				"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemCost"						"20"
+	}
+
 }

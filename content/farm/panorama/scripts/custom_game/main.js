@@ -6,7 +6,6 @@ GameUI.SetMouseCallback(function(eventName, arg) {
 	if (eventName === "pressed" || eventName === "doublepressed") {
 		if (RIGHT_CLICK) {
 			e = GameUI.FindScreenEntities(GameUI.GetCursorPosition());
-			$.Msg(e, GameUI.GetCursorPosition(), GameUI.GetClickBehaviors());
 		}
 	}
 	return CONTINUE_PROCESSING_EVENT;

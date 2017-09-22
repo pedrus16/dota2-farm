@@ -27,6 +27,14 @@
 		"ScriptFile" 					"abilities/ability_watering"
 		"AbilityTextureName"			"naga_siren_rip_tide"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilitySpecial"
+		{
+			"01"
+			{ 
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"300.0"
+			}
+		}
 	}
 
 	//=================================================================================================================

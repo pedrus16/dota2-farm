@@ -5,8 +5,8 @@
 
     "consumables"
     {
-        "item"      "item_seed_corn"
         "item"      "item_seed_potato"
+        "item"      "item_seed_corn"
     }
 
     "attributes"

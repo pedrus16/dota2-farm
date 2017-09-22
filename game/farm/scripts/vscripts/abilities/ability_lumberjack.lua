@@ -2,7 +2,7 @@ farmer_lumberjack = class ({})
 LinkLuaModifier( "modifier_lumberjack", "modifiers/modifier_lumberjack.lua", LUA_MODIFIER_MOTION_NONE )
 
 function farmer_lumberjack:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+	return bit.bor(DOTA_ABILITY_BEHAVIOR_UNIT_TARGET, DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING)
 end
 
 function farmer_lumberjack:GetCastRange()
@@ -20,5 +20,11 @@ end
 function farmer_lumberjack:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()
-	hTarget:CutDown(DOTA_TEAM_GOODGUYS)
+
+	EmitGlobalSound("Hero_Brewmaster.Attack")
+	EmitSoundOnLocationWithCaster(hTarget:GetAbsOrigin(), "Hero_Brewmaster.Attack", hCaster)
+	hTarget.hits = 1 + (hTarget.hits or 0)
+	if hTarget.hits > 2 then
+		hTarget:CutDown(DOTA_TEAM_GOODGUYS)
+	end
 end
