@@ -12,7 +12,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile" 					"abilities/ability_hoe"
-		"AbilityTextureName"			"nyx_assassin_burrow"
+		"AbilityTextureName"			"hoe"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 	}
 
@@ -25,7 +25,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile" 					"abilities/ability_watering"
-		"AbilityTextureName"			"naga_siren_rip_tide"
+		"AbilityTextureName"			"water"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilitySpecial"
 		{
@@ -47,7 +47,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile" 					"abilities/ability_lumberjack"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
-		"AbilityTextureName"			"troll_warlord_berserkers_rage"
+		"AbilityTextureName"			"axe"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 	}
 }

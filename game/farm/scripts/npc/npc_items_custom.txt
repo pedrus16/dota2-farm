@@ -5,7 +5,7 @@
 		"ID"							"1250"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_seed_corn"
-		"AbilityTextureName"			"item_seed_corn"
+		"AbilityTextureName"			"item_corn_bag"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		"ItemDisplayCharges"			"1"
@@ -24,7 +24,7 @@
 		"ID"							"1251"
 		"BaseClass"						"item_datadriven"
 		"Model"							"models/item_corn_low.vmdl"
-		"AbilityTextureName"			"item_harvest_corn"
+		"AbilityTextureName"			"item_corn"
 		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"ItemDisplayCharges"			"1"
@@ -43,7 +43,7 @@
 		"ID"							"1252"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_seed_potato"
-		"AbilityTextureName"			"item_seed_potato"
+		"AbilityTextureName"			"item_potato"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		"ItemDisplayCharges"			"1"
@@ -62,7 +62,7 @@
 		"ID"							"1253"
 		"BaseClass"						"item_datadriven"
 		"Model"							"models/potato_harvest.vmdl"
-		"AbilityTextureName"			"item_seed_potato"
+		"AbilityTextureName"			"item_potato"
 		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"ItemDisplayCharges"			"1"
@@ -80,8 +80,8 @@
 	{
 		"ID"							"1254"
 		"BaseClass"						"item_datadriven"
-		"Model"							"models/props_gameplay/branch.vmdl"
-		"AbilityTextureName"			"item_branches"
+		"Model"							"models/log.vmdl"
+		"AbilityTextureName"			"item_log"
 		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		"ItemDisplayCharges"			"1"
