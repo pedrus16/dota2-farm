@@ -34,6 +34,7 @@ function CAddonFarmGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(CAddonFarmGameMode, "OrderFilter"), self)
 	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(CAddonFarmGameMode, "InventoryFilter"), self)
+	GameRules:GetGameModeEntity():SetStashPurchasingDisabled(true)
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(CAddonFarmGameMode, "OnNPCSpawned"), self)
 	ListenToGameEvent("tree_cut", Dynamic_Wrap(CAddonFarmGameMode, "OnTreeCut"), self)
 	self.units = LoadKeyValues("scripts/npc/npc_units_custom.txt")
@@ -66,18 +67,13 @@ function CAddonFarmGameMode:OrderFilter( event )
 	if hModifier == nil then return true end
 	if hModifier:GetProgress() < 1 then return true end
 
-	hModifier:DropHarvest()
+	hModifier:DropHarvest(hUnit)
 
 	return true
 end
 
 
 function CAddonFarmGameMode:InventoryFilter( event )
-	local hItem = EntIndexToHScript(event.item_entindex_const)
-	local hParent = EntIndexToHScript(event.inventory_parent_entindex_const)
-	if hItem:GetOwner() == nil then
-		hItem:SetOwner(hParent)
-	end
 	return true
 end
 
