@@ -42,6 +42,7 @@
 	{
 		"ID"							"1252"
 		"BaseClass"						"item_lua"
+		"Model"							"models/potato_harvest.vmdl"
 		"ScriptFile"					"items/item_seed_potato"
 		"AbilityTextureName"			"item_potato"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"

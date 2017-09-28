@@ -177,7 +177,7 @@
 		"Farm"
 		{
 			"Permanent"				"0"
-			"Harvest"				"item_harvest_potato"
+			"Harvest"				"item_seed_potato"
 			"HarvestCount"			"2"
 			"GrowthDuration"		"5"
 			"GrowthModels"

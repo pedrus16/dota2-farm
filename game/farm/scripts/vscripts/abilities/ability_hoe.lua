@@ -102,4 +102,5 @@ function farmer_hoe:OnSpellStart()
 	local iParticleId = ParticleManager:CreateParticle("particles/items2_fx/ward_spawn_generic.vpcf", PATTACH_ABSORIGIN, hUnit)
 	-- Randomize the effect's rotation
 	ParticleManager:SetParticleControl(iParticleId, 1, Vector(0, RandomFloat(1, 360), 0))
+	hCaster:EmitSound("Tiny.Grow")
 end

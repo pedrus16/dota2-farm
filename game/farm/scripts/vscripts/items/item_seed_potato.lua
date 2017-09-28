@@ -47,7 +47,7 @@ function item_seed_potato:OnSpellStart()
 		hTarget.planted:AddNewModifier(hCaster, nil, "modifier_plant", {})
 		hTarget.planted:SetAngles(0, math.random(360), 0)
 	end
-
+	hCaster:EmitSound("ui.inv_drop")
 	local charges = self:GetCurrentCharges()
 	self:SetCurrentCharges(charges - 1)
 	if self:GetCurrentCharges() <= 0 then

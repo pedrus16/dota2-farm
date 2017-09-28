@@ -12,6 +12,9 @@ function Precache( context )
 			PrecacheResource( "particle", "*.vpcf", context )
 			PrecacheResource( "particle_folder", "particles/folder", context )
 	]]
+	PrecacheResource( "soundfile",  "soundevents/game_sounds.vsndevts", context)
+	PrecacheResource( "soundfile",  "soundevents/game_sounds_ui_imported.vsndevts", context)
+	PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts", context)
 end
 
 -- Create the game mode when we activate
@@ -74,6 +77,10 @@ end
 
 
 function CAddonFarmGameMode:InventoryFilter( event )
+	local hUnit = EntIndexToHScript(event.inventory_parent_entindex_const)
+	local hItem = EntIndexToHScript(event.item_entindex_const)
+	hItem:SetPurchaser(hUnit)
+	hItem:SetPurchaseTime(10)
 	return true
 end
 
@@ -90,6 +97,9 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 		end
 		if hNPC:HasAbility("farmer_lumberjack") then
 			hNPC:FindAbilityByName("farmer_lumberjack"):SetLevel(1)
+		end
+		for i=1, 5 do
+			hNPC:AddItemByName("item_seed_potato")
 		end
 	end
 	if self.units[hNPC:GetUnitName()] == nil then return end

@@ -47,8 +47,8 @@ function item_seed_corn:OnSpellStart()
 		hTarget.planted:AddNewModifier(hCaster, nil, "modifier_plant", {})
 		hTarget.planted:SetAngles(0, math.random(360), 0)
 	end
-
-	local charges = self:GetCurrentCharges()
+	hCaster:EmitSound("ui.inv_drop")
+	local charges = self:GetCurrentCharges()	
 	self:SetCurrentCharges(charges - 1)
 	if self:GetCurrentCharges() <= 0 then
 		self:Destroy()

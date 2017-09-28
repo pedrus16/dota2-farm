@@ -21,8 +21,7 @@ function farmer_lumberjack:OnSpellStart()
 	local hCaster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()
 
-	EmitGlobalSound("Hero_Brewmaster.Attack")
-	EmitSoundOnLocationWithCaster(hTarget:GetAbsOrigin(), "Hero_Brewmaster.Attack", hCaster)
+	hCaster:EmitSound("Hero_Tiny_Tree.Attack")
 	hTarget.hits = 1 + (hTarget.hits or 0)
 	if hTarget.hits > 2 then
 		hTarget:CutDown(DOTA_TEAM_GOODGUYS)
