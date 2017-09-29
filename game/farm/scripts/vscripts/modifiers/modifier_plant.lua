@@ -11,6 +11,9 @@ function modifier_plant:CheckState()
 	return state
 end
 
+function modifier_plant:IsHidden()
+	return true
+end
 
 function modifier_plant:OnCreated()
 	if IsServer() then

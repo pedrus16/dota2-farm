@@ -10,6 +10,10 @@ function modifier_soil:CheckState()
 	return state
 end
 
+function modifier_soil:IsHidden()
+	return true
+end
+
 function modifier_soil:GetGrowthRate()
 	local hSoil = self:GetParent()
 	if hSoil == nil then return 0 end
