@@ -111,7 +111,8 @@
 			"Permanent"				"1"
 			"Harvest"				"item_harvest_corn"
 			"HarvestCount"			"3"
-			"GrowthDuration"		"600"
+			"GrowthDuration"		"60"
+			"DecayDuration"			"60"
 			"GrowthModels"
 			{
 				"1"					"models/corn_low_00.vmdl"
@@ -120,6 +121,7 @@
 			}
 			"FullyGrownModel"		"models/corn_low_03_full.vmdl"
 			"HarvestedModel"		"models/corn_low_03.vmdl"
+			"DecayedModel"			"models/corn_low_dead.vmdl"
 		}
 	}
 
@@ -180,6 +182,7 @@
 			"Harvest"				"item_seed_potato"
 			"HarvestCount"			"2"
 			"GrowthDuration"		"5"
+			"DecayDuration"			"5"
 			"GrowthModels"
 			{
 				"1"					"models/potato_low_00.vmdl"
@@ -188,6 +191,7 @@
 			}
 			"FullyGrownModel"		"models/potato_low_02.vmdl"
 			"HarvestedModel"		"models/potato_low_02.vmdl"
+			"DecayedModel"			"models/potato_low_dead.vmdl"
 		}
 	}
 }

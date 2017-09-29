@@ -68,9 +68,8 @@ function CAddonFarmGameMode:OrderFilter( event )
 	if distance == nil or distance > 128 then return true end
 	local hModifier = hTarget:FindModifierByName("modifier_plant")
 	if hModifier == nil then return true end
-	if hModifier:GetProgress() < 1 then return true end
 
-	hModifier:DropHarvest(hUnit)
+	hModifier:UnitInteracts(hUnit)
 
 	return true
 end
@@ -107,11 +106,13 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 	if farmKV == nil then return end
 	hNPC.plantDescription = {
 		duration = farmKV.GrowthDuration,
+		decayDuration = farmKV.DecayDuration,
 		harvestItem = farmKV.Harvest,
 		harvestCount = farmKV.HarvestCount,
 		models = farmKV.GrowthModels,
 		grownModel = farmKV.FullyGrownModel,
 		emptyModel = farmKV.HarvestedModel,
+		decayedModel = farmKV.DecayedModel,
 		permanent = farmKV.Permanent == "1"
 	}
 end
