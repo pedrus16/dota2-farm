@@ -2,7 +2,7 @@ item_seed_potato = class ({})
 LinkLuaModifier( "modifier_plant", "modifiers/modifier_plant.lua", LUA_MODIFIER_MOTION_NONE )
 
 function item_seed_potato:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+	return DOTA_ABILITY_BEHAVIOR_POINT
 end
 
 
@@ -15,22 +15,27 @@ function item_seed_potato:GetCastPoint()
 	return 0
 end
 
-function item_seed_potato:CastFilterResultTarget( hTarget )
-	if hTarget:GetUnitName() ~= "npc_dota_creature_soil" then
+function item_seed_potato:CastFilterResultLocation( vLocation )
+	if IsClient() then 
+		return UF_SUCCESS 
+	end
+	local hSoil = GameRules.AddonFarm:GetSoilAt(vLocation)
+	if hSoil == nil then
 		return UF_FAIL_CUSTOM
 	end
-	if hTarget.planted ~= nil then
+	if hSoil.planted ~= nil then
 		return UF_FAIL_CUSTOM
 	end
 	return UF_SUCCESS
 end
 
 
-function item_seed_potato:GetCustomCastErrorTarget( hTarget )
-	if hTarget:GetUnitName() ~= "npc_dota_creature_soil" then
+function item_seed_potato:GetCustomCastErrorLocation( vLocation )
+	local hSoil = GameRules.AddonFarm:GetSoilAt(vLocation)
+	if hSoil == nil then
 		return "#dota_hud_error_must_cast_on_hoed_ground"
 	end
-	if hTarget.planted ~= nil then
+	if hSoil.planted ~= nil then
 		return "#dota_hud_error_soil_has_seed"
 	end
 	return ""
@@ -39,13 +44,14 @@ end
 
 function item_seed_potato:OnSpellStart()
 	local hCaster = self:GetCaster()
-	local hTarget = self:GetCursorTarget()
+	local vPosition = self:GetCursorPosition()
+	local hSoil = GameRules.AddonFarm:GetSoilAt(vPosition)
 
-	if hTarget:GetUnitName() == "npc_dota_creature_soil" then
-		hTarget.planted = CreateUnitByName("npc_dota_creature_plant_potato", hTarget:GetAbsOrigin(), false, hCaster, nil, hCaster:GetTeam())
-		hTarget.planted.soil = hTarget
-		hTarget.planted:AddNewModifier(hCaster, nil, "modifier_plant", {})
-		hTarget.planted:SetAngles(0, math.random(360), 0)
+	if hSoil:GetUnitName() == "npc_dota_creature_soil" then
+		hSoil.planted = CreateUnitByName("npc_dota_creature_plant_potato", hSoil:GetAbsOrigin(), false, hCaster, nil, hCaster:GetTeam())
+		hSoil.planted.soil = hSoil
+		hSoil.planted:AddNewModifier(hCaster, nil, "modifier_plant", {})
+		hSoil.planted:SetAngles(0, math.random(360), 0)
 	end
 	hCaster:EmitSound("ui.inv_drop")
 	local charges = self:GetCurrentCharges()

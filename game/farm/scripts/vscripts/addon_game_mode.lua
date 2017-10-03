@@ -1,4 +1,3 @@
--- Generated from template
 
 if CAddonFarmGameMode == nil then
 	CAddonFarmGameMode = class({})
@@ -125,4 +124,23 @@ function CAddonFarmGameMode:OnTreeCut( event )
 		hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
 		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, vOrigin + RandomVector(1):Normalized() * 16)
 	end
+end
+
+function CAddonFarmGameMode:GetSoilAt( vLocation )
+	unitsInTile = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
+									vLocation,
+									nil,
+									32,
+									DOTA_UNIT_TARGET_TEAM_BOTH,
+									DOTA_UNIT_TARGET_BASIC,
+									DOTA_UNIT_TARGET_FLAG_NONE,
+									FIND_CLOSEST,
+									false)
+
+	for _, unit in pairs(unitsInTile) do
+		if unit:GetUnitName() == "npc_dota_creature_soil" then
+			return unit
+		end
+	end
+	return nil
 end

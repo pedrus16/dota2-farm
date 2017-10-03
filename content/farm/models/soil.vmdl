@@ -112,7 +112,7 @@
 		[
 			{
 				m_sSearchMaterial = "*"
-				m_sReplaceMaterial = "materials/models/heroes/sniper/sniper_body_color.vmat"
+				m_sReplaceMaterial = "materials/models/effects/rocky1.vmat"
 			},
 		]
 	}
