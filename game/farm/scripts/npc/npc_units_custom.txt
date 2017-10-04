@@ -10,10 +10,10 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/particle/soil_fx_a.vmdl"	// Model.
+		"Model"						"models/soil.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"Level"						"1"
-		"ModelScale" 				"6.4"
+		"ModelScale" 				"1"
 
 		// Armor
 		//----------------------------------------------------------------

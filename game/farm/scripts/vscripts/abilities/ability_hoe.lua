@@ -73,7 +73,6 @@ function farmer_hoe:OnSpellStart()
 	vLocation.y = GridNav:GridPosToWorldCenterY(GridNav:WorldToGridPosY(vLocation.y))
 
 	local hUnit = CreateUnitByName("npc_dota_creature_soil", vLocation, false, hCaster, nil, hCaster:GetTeam())
-	hUnit:SetOrigin(hUnit:GetOrigin() + Vector(0, 0, 2))
 	-- hUnit:SetAngles(0, RandomInt(1, 360), 0)
 	hUnit:AddNewModifier( hCaster, nil, "modifier_soil", {})
 	local iParticleId = ParticleManager:CreateParticle("particles/items2_fx/ward_spawn_generic_b.vpcf", PATTACH_ABSORIGIN, hUnit)

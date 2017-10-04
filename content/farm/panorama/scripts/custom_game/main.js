@@ -1,12 +1,25 @@
-GameUI.SetMouseCallback(function(eventName, arg) {
-	var CONTINUE_PROCESSING_EVENT = false;
-	var LEFT_CLICK = (arg === 0);
-    var RIGHT_CLICK = (arg === 1);
+var particle = null;
 
-	if (eventName === "pressed" || eventName === "doublepressed") {
-		if (RIGHT_CLICK) {
-			e = GameUI.FindScreenEntities(GameUI.GetCursorPosition());
+(function test() {
+	var unitId = Players.GetLocalPlayerPortraitUnit();
+	var abilityId = Entities.GetAbilityByName(unitId, 'farmer_hoe');
+	if (GameUI.GetClickBehaviors() == CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_CAST) {
+		var screenPos = GameUI.GetCursorPosition();
+		var worldPos = Game.ScreenXYToWorld(screenPos[0], screenPos[1]);
+		var gridPos = [ 
+			Math.floor(worldPos[0] / 64) * 64 + 32, 
+			Math.floor(worldPos[1] / 64) * 64 + 32,
+			worldPos[2]
+		];
+		if (!particle) {
+			particle = Particles.CreateParticle('particles/mouse_square.vpcf', ParticleAttachment_t.PATTACH_CUSTOMORIGIN, 0);
 		}
+		Particles.SetParticleControl(particle, 7, gridPos);
 	}
-	return CONTINUE_PROCESSING_EVENT;
-});
+	else if (particle) {
+		Particles.DestroyParticleEffect(particle, true);
+		particle = null;
+	}
+
+	$.Schedule(0, test);
+})();
