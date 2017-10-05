@@ -5,7 +5,7 @@
 	{		
 		"addon_game_name"							"Farming Simulator"
 		"DOTA_Hud_error_ground_already_hoed"		"Ground already ploughed"
-		"DOTA_Hud_error_must_cast_on_hoed_ground"	"Must plant on ploughed ground"
+		"DOTA_Hud_error_must_cast_on_hoed_ground"	"Must cast on ploughed ground"
 		"DOTA_Hud_error_soil_has_seed"				"Soil already seeded"
 
 		"DOTA_Tooltip_ability_farmer_hoe"			"Hoe"

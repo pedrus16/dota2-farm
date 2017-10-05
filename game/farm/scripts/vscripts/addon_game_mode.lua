@@ -112,7 +112,7 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 		grownModel = farmKV.FullyGrownModel,
 		emptyModel = farmKV.HarvestedModel,
 		decayedModel = farmKV.DecayedModel,
-		permanent = farmKV.Permanent == "1"
+		permanent = farmKV.Permanent == 1
 	}
 end
 

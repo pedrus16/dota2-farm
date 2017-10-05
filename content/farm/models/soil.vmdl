@@ -39,7 +39,23 @@
 	}
 	m_physicsMeshList = 
 	{
-		m_meshList = [  ]
+		m_meshList = 
+		[
+			{
+				m_meshName = "soil"
+				m_meshFile = "models/soil.fbx"
+				m_bOneConvexPiece = true
+				m_flMaxError = 0.0
+				m_bUseExactGeometry = false
+				m_bAutoMass = true
+				m_flMassOverride = 100.0
+				m_bConcavePerJoint = false
+				m_bSelfCollisions = false
+				m_bForceKinematic = false
+				m_bIgnoreScale = false
+				m_bIgnoreSkeleton = false
+			},
+		]
 	}
 	m_pModelInfo = null
 	m_pBoneFlagList = 
@@ -58,10 +74,10 @@
 						m_HitBoxes = 
 						[
 							{
-								m_name = "Bone"
+								m_name = "root"
 								m_sSurfaceProperty = ""
 								m_nGroupId = 0
-								m_sBoneName = "Bone"
+								m_sBoneName = "root"
 								m_vMinBounds = [ -31.996803, -5.800003, -31.996799 ]
 								m_vMaxBounds = [ 31.996803, 0.6, 31.996799 ]
 								m_bTranslationOnly = false
@@ -74,10 +90,71 @@
 			}
 		},
 	]
-	m_pAttachmentLists = [  ]
+	m_pAttachmentLists = 
+	[
+		{
+			m_pObject = 
+			{
+				m_name = ""
+				m_attachments = 
+				[
+					{
+						m_name = "attach_root"
+						m_influences = 
+						[
+							{
+								m_influenceName = "root"
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
+	]
 	m_pAnimGroup = 
 	{
-		m_pObject = null
+		m_pObject = 
+		{
+			m_Name = ""
+			m_pReferenceSkeleton = 
+			{
+				m_pObject = null
+			}
+			m_pBoneFlagList = 
+			{
+				m_pObject = null
+			}
+			m_pSeqGroup = 
+			{
+				m_pObject = 
+				{
+					m_poseParameterArray = 
+					[
+						{
+							m_sName = "test"
+							m_flMin = 0.0
+							m_flMax = 0.0
+							m_bLooping = false
+							m_flLoop = 0.0
+						},
+					]
+					m_boneMaskArray = [  ]
+					m_syntheticAnimationArray = [  ]
+					m_cmdSequenceArray = [  ]
+					m_multiSequenceArray = [  ]
+					m_sequenceArray = [  ]
+				}
+			}
+			m_pAnimGroups = [  ]
+			m_Vanim = [  ]
+			m_sScripts = [  ]
+			m_folderNames = [  ]
+			m_sCompileScripts = [  ]
+		}
 	}
 	m_pMaterialGroupList = 
 	{
@@ -111,8 +188,8 @@
 		m_vMaterialRemapList = 
 		[
 			{
-				m_sSearchMaterial = "*"
-				m_sReplaceMaterial = "materials/models/effects/rocky1.vmat"
+				m_sSearchMaterial = ".vmat"
+				m_sReplaceMaterial = "materials/soil_2.vmat"
 			},
 		]
 	}

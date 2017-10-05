@@ -1,5 +1,11 @@
 modifier_plant = class({})
 
+local GROWTH_MULTIPLIER = 1
+
+if IsInToolsMode() then
+	GROWTH_MULTIPLIER = 100
+end
+
 function modifier_plant:CheckState()
 	local hPlant = self:GetParent()
 	local state = {
@@ -38,9 +44,9 @@ function modifier_plant:OnIntervalThink()
 		if growthRate > 0 then
 			hPlant.decay = 0
 		elseif hPlant.progress > 0 then
-			hPlant.decay = hPlant.decay + delta / duration
+			hPlant.decay = hPlant.decay + (delta / duration) * GROWTH_MULTIPLIER
 		end
-		hPlant.progress = hPlant.progress + (delta * growthRate) / duration
+		hPlant.progress = hPlant.progress + ((delta * growthRate) / duration) * GROWTH_MULTIPLIER
 		if hPlant.decay >= 1 then
 			hPlant:SetModel(hPlant.plantDescription.decayedModel)
 			hPlant.selectable = true
@@ -49,6 +55,7 @@ function modifier_plant:OnIntervalThink()
 			if hPlant.progress >= 1 then
 				hPlant:SetModel(hPlant.plantDescription.grownModel)
 				hPlant.hasHarvest = true
+				print(hPlant.plantDescription.harvestCount)
 				for i=1, hPlant.plantDescription.harvestCount do
 					hPlant:AddItemByName(hPlant.plantDescription.harvestItem)
 				end
@@ -90,8 +97,8 @@ function modifier_plant:DropHarvest(hUnit)
 		hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
 		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, hPlant:GetAbsOrigin() + RandomVector(1):Normalized() * 64)
 	end
+	hPlant:RemoveItem(hHarvest)
 	if hPlant.plantDescription.permanent then
-		hPlant:RemoveItem(hHarvest)
 		hPlant:SetModel(hPlant.plantDescription.emptyModel)
 		hPlant.hasHarvest = false
 	else

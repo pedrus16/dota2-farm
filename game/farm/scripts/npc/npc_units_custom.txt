@@ -111,8 +111,8 @@
 			"Permanent"				"1"
 			"Harvest"				"item_harvest_corn"
 			"HarvestCount"			"3"
-			"GrowthDuration"		"60"
-			"DecayDuration"			"60"
+			"GrowthDuration"		"2400"
+			"DecayDuration"			"960"
 			"GrowthModels"
 			{
 				"1"					"models/corn_low_00.vmdl"
@@ -181,8 +181,8 @@
 			"Permanent"				"0"
 			"Harvest"				"item_seed_potato"
 			"HarvestCount"			"2"
-			"GrowthDuration"		"5"
-			"DecayDuration"			"5"
+			"GrowthDuration"		"960"
+			"DecayDuration"			"960"
 			"GrowthModels"
 			{
 				"1"					"models/potato_low_00.vmdl"
