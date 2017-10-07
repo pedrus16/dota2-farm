@@ -55,7 +55,6 @@ function modifier_plant:OnIntervalThink()
 			if hPlant.progress >= 1 then
 				hPlant:SetModel(hPlant.plantDescription.grownModel)
 				hPlant.hasHarvest = true
-				print(hPlant.plantDescription.harvestCount)
 				for i=1, hPlant.plantDescription.harvestCount do
 					hPlant:AddItemByName(hPlant.plantDescription.harvestItem)
 				end
@@ -73,13 +72,15 @@ end
 
 
 function modifier_plant:UnitInteracts(hUnit)
-	local hPlant = self:GetParent()
-	if hPlant.decay >= 1 then
-		hPlant.soil.planted = nil
-		hPlant:Destroy()
-	end
-	if hPlant.progress >= 1 then
-		self:DropHarvest(hUnit)
+	if IsServer() then
+		local hPlant = self:GetParent()
+		if hPlant.decay >= 1 then
+			hPlant.soil.planted = nil
+			hPlant:Destroy()
+		end
+		if hPlant.progress >= 1 then
+			self:DropHarvest(hUnit)
+		end
 	end
 
 end

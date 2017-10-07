@@ -23,7 +23,8 @@
 	{
 		"ID"							"1251"
 		"BaseClass"						"item_datadriven"
-		"Model"							"models/item_corn_low.vmdl"
+		"Model"							"models/items/corn/corn_ear.vmdl"
+		"Effect" 						""
 		"AbilityTextureName"			"item_corn"
 		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
@@ -42,7 +43,8 @@
 	{
 		"ID"							"1252"
 		"BaseClass"						"item_lua"
-		"Model"							"models/potato_harvest.vmdl"
+		"Model"							"models/items/potato/potato.vmdl"
+		"Effect" 						""
 		"ScriptFile"					"items/item_seed_potato"
 		"AbilityTextureName"			"item_potato"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -62,7 +64,8 @@
 	{
 		"ID"							"1253"
 		"BaseClass"						"item_datadriven"
-		"Model"							"models/potato_harvest.vmdl"
+		"Model"							"models/items/potato/potato.vmdl"
+		"Effect" 						""
 		"AbilityTextureName"			"item_potato"
 		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
@@ -81,7 +84,7 @@
 	{
 		"ID"							"1254"
 		"BaseClass"						"item_datadriven"
-		"Model"							"models/log.vmdl"
+		"Model"							"models/items/wood_log/wood_log.vmdl"
 		"AbilityTextureName"			"item_log"
 		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
