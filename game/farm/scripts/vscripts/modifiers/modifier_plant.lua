@@ -108,6 +108,7 @@ function modifier_plant:DropHarvest(hUnit)
 		hPlant.soil.planted = nil
 		hPlant:Destroy()
 	end
+	hPlant.selectable = false
 end
 
 
