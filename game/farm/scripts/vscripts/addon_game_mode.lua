@@ -93,12 +93,14 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 		if hNPC:HasAbility("farmer_watering") then
 			hNPC:FindAbilityByName("farmer_watering"):SetLevel(1)
 		end
+		if hNPC:HasAbility("farmer_refill_water") then
+			hNPC:FindAbilityByName("farmer_refill_water"):SetLevel(1)
+		end
 		if hNPC:HasAbility("farmer_lumberjack") then
 			hNPC:FindAbilityByName("farmer_lumberjack"):SetLevel(1)
 		end
-		for i=1, 5 do
-			hNPC:AddItemByName("item_seed_potato")
-		end
+		for i=1, 5 do hNPC:AddItemByName("item_seed_potato") end
+		for i=1, 5 do hNPC:AddItemByName("item_seed_corn") end
 	end
 	if self.units[hNPC:GetUnitName()] == nil then return end
 	local farmKV = self.units[hNPC:GetUnitName()]["Farm"]

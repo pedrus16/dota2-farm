@@ -1,19 +1,35 @@
 farmer_watering = class ({})
+LinkLuaModifier( "modifier_watering_can", "modifiers/modifier_watering_can.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_watered", "modifiers/modifier_watered.lua", LUA_MODIFIER_MOTION_NONE )
 
-function farmer_watering:GetBehavior()
-	return bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING)
+
+function farmer_watering:GetBehavior() 
+	return bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING) 
 end
 
 
-function farmer_watering:GetCastRange()
-	return 128
+function farmer_watering:GetCastRange()	
+	return 128 
 end
 
 
-function farmer_watering:GetCastPoint()
-	return 0.4
+function farmer_watering:GetCastPoint()	
+	return 0.4 
 end
+
+
+function farmer_watering:GetIntrinsicModifierName()
+	return "modifier_watering_can"
+end
+
+
+function farmer_watering:IsHidden()
+	local hCaster = self:GetCaster()
+	local hModifier = self:GetCaster():FindModifierByName("modifier_watering_can")
+	if hModifier == nil then return end
+	return hModifier:GetStackCount() <= 0
+end
+
 
 function farmer_watering:CastFilterResultLocation( vLocation )
 	if IsClient() then 
@@ -48,4 +64,13 @@ function farmer_watering:OnSpellStart()
 	hCaster:EmitSound("BaseEntity.ExitWater")
 	local duration = self:GetSpecialValueFor("duration")
 	local hModifier = hSoil:AddNewModifier( hCaster, self, "modifier_watered", { duration = duration })
+	self:ConsumeWater()
+end
+
+
+function farmer_watering:ConsumeWater()
+	local hCaster = self:GetCaster()
+	local hModifier = self:GetCaster():FindModifierByName("modifier_watering_can")
+	if hModifier == nil then return end
+	hModifier:DecrementStackCount()
 end
