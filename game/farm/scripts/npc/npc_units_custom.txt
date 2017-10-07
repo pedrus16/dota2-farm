@@ -108,20 +108,20 @@
 
 		"Farm"
 		{
-			"Permanent"				"1"
-			"Harvest"				"item_harvest_corn"
-			"HarvestCount"			"3"
-			"GrowthDuration"		"2400"
-			"DecayDuration"			"960"
+			"Harvest"					"item_harvest_corn"
+			"HarvestCount"				"3"
+			"GrowthDuration"			"2400"
+			"DecayDuration"				"960"
+			"NextHarvestDelay"			"1440"
 			"GrowthModels"
 			{
-				"1"					"models/gameplay/corn/corn_00.vmdl"
-				"2"					"models/gameplay/corn/corn_01.vmdl"
-				"3"					"models/gameplay/corn/corn_02.vmdl"
+				"1"		"models/gameplay/corn/corn_00.vmdl"
+				"2"		"models/gameplay/corn/corn_01.vmdl"
+				"3"		"models/gameplay/corn/corn_02.vmdl"
 			}
-			"FullyGrownModel"		"models/gameplay/corn/corn_03_full.vmdl"
-			"HarvestedModel"		"models/gameplay/corn/corn_03.vmdl"
-			"DecayedModel"			"models/gameplay/corn/corn_dead.vmdl"
+			"FullyGrownModel"			"models/gameplay/corn/corn_03_full.vmdl"
+			"HarvestedModel"			"models/gameplay/corn/corn_03.vmdl"
+			"DecayedModel"				"models/gameplay/corn/corn_dead.vmdl"
 		}
 	}
 

@@ -26,7 +26,8 @@ function modifier_plant:OnCreated()
 		local hPlant = self:GetParent()
 		hPlant.plantTime = Time()
 		self.tick = hPlant.plantTime
-		hPlant.progress = 0
+		hPlant.growthProgress = 0
+		hPlant.harvestProgress = 1
 		hPlant.decay = 0
 		hPlant.selectable = false
 		self:StartIntervalThink(1)
@@ -38,32 +39,32 @@ function modifier_plant:OnIntervalThink()
 	if IsServer() then
 		local hPlant = self:GetParent()
 		local duration = hPlant.plantDescription.duration
+		local nextHarvestDelay = hPlant.plantDescription.nextHarvestDelay
 		local delta = Time() - self.tick
 		self.tick = Time()
 		local growthRate = self:GetSoilGrowthRate()
 		if growthRate > 0 then
 			hPlant.decay = 0
-		elseif hPlant.progress > 0 then
+		elseif hPlant.growthProgress > 0 then
 			hPlant.decay = hPlant.decay + (delta / duration) * GROWTH_MULTIPLIER
 		end
-		hPlant.progress = hPlant.progress + ((delta * growthRate) / duration) * GROWTH_MULTIPLIER
+		hPlant.growthProgress = hPlant.growthProgress + ((delta * growthRate) / duration) * GROWTH_MULTIPLIER
 		if hPlant.decay >= 1 then
 			hPlant:SetModel(hPlant.plantDescription.decayedModel)
 			hPlant.selectable = true
 			self:StartIntervalThink(-1)
 		elseif not hPlant.hasHarvest then
-			if hPlant.progress >= 1 then
-				hPlant:SetModel(hPlant.plantDescription.grownModel)
-				hPlant.hasHarvest = true
-				for i=1, hPlant.plantDescription.harvestCount do
-					hPlant:AddItemByName(hPlant.plantDescription.harvestItem)
+			if hPlant.growthProgress >= 1 then
+				if hPlant.harvestProgress >= 1 then
+					self:SetPlantHarvestable(hPlant)
+				else
+					hPlant.harvestProgress = hPlant.harvestProgress + ((delta * growthRate) / nextHarvestDelay) * GROWTH_MULTIPLIER
 				end
-				hPlant.selectable = true
-			elseif hPlant.progress >= 0.75 then
+			elseif hPlant.growthProgress >= 0.75 then
 				hPlant:SetModel(hPlant.plantDescription.models["3"])
-			elseif hPlant.progress >= 0.5 then
+			elseif hPlant.growthProgress >= 0.5 then
 				hPlant:SetModel(hPlant.plantDescription.models["2"])
-			elseif hPlant.progress >= 0.25 then
+			elseif hPlant.growthProgress >= 0.25 then
 				hPlant:SetModel(hPlant.plantDescription.models["1"])
 			end
 		end
@@ -78,7 +79,7 @@ function modifier_plant:UnitInteracts(hUnit)
 			hPlant.soil.planted = nil
 			hPlant:Destroy()
 		end
-		if hPlant.progress >= 1 then
+		if hPlant.growthProgress >= 1 then
 			self:DropHarvest(hUnit)
 		end
 	end
@@ -98,10 +99,11 @@ function modifier_plant:DropHarvest(hUnit)
 		hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
 		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, hPlant:GetAbsOrigin() + RandomVector(1):Normalized() * 64)
 	end
-	hPlant:RemoveItem(hHarvest)
-	if hPlant.plantDescription.permanent then
+	hHarvest:Destroy()
+	if hPlant.plantDescription.nextHarvestDelay ~= nil then
 		hPlant:SetModel(hPlant.plantDescription.emptyModel)
 		hPlant.hasHarvest = false
+		hPlant.harvestProgress = 0
 	else
 		hPlant.soil.planted = nil
 		hPlant:Destroy()
@@ -120,5 +122,15 @@ end
 
 
 function modifier_plant:GetProgress()
-	return self:GetParent().progress
+	return self:GetParent().growthProgress
+end
+
+
+function modifier_plant:SetPlantHarvestable( hPlant )
+	hPlant:SetModel(hPlant.plantDescription.grownModel)
+	hPlant.hasHarvest = true
+	for i=1, hPlant.plantDescription.harvestCount do
+		hPlant:AddItemByName(hPlant.plantDescription.harvestItem)
+	end
+	hPlant.selectable = true
 end

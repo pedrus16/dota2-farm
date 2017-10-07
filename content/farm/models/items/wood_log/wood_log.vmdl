@@ -111,7 +111,7 @@
 		m_vMaterialRemapList = 
 		[
 			{
-				m_sSearchMaterial = "*"
+				m_sSearchMaterial = ".vmat"
 				m_sReplaceMaterial = "materials/models/items/wood_log/wood_log.vmat"
 			},
 		]
