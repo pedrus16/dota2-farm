@@ -18,6 +18,7 @@
 		"DOTA_Tooltip_ability_item_wood_log"		"Wood Log"
 
 		"DOTA_Tooltip_modifier_watered"				"Watered"
+		"DOTA_Tooltip_modifier_watering_can"		"Water"
 
 		"npc_dota_creature_soil"					"Soil"
 		"npc_dota_creature_plant_corn"				"Corn Plant"

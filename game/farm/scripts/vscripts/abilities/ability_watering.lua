@@ -59,8 +59,8 @@ function farmer_watering:OnSpellStart()
 	local hSoil = GameRules.AddonFarm:GetSoilAt(vPosition)
 
 	if hSoil == nil then return end
-	local nFXIndex = ParticleManager:CreateParticle( "particles/econ/courier/courier_kunkka_parrot/courier_kunkka_parrot_splash_c.vpcf", PATTACH_WORLDORIGIN, nil )
-	ParticleManager:SetParticleControl( nFXIndex, 0, hSoil:GetOrigin() )
+	local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_tidehunter/tidehunter_gush_splash_water7_low.vpcf", PATTACH_WORLDORIGIN, nil )
+	ParticleManager:SetParticleControl( nFXIndex, 3, hSoil:GetOrigin() )
 	hCaster:EmitSound("BaseEntity.ExitWater")
 	local duration = self:GetSpecialValueFor("duration")
 	local hModifier = hSoil:AddNewModifier( hCaster, self, "modifier_watered", { duration = duration })

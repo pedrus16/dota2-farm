@@ -99,4 +99,43 @@
 		"ItemCost"						"20"
 	}
 
+	"item_seed_cauliflower"
+	{
+		"ID"							"1255"
+		"BaseClass"						"item_lua"
+		"Effect" 						""
+		"ScriptFile"					"items/item_seed_cauliflower"
+		"AbilityTextureName"			"item_potato"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"ItemDisplayCharges"			"1"
+		"ItemInitialCharges"			"1"
+		"ItemRequiresCharges"			"1"
+		"ItemStackable"					"1"
+		"ItemSellable"					"1"
+		"ItemPurchasable"				"1"
+		"ItemPermanent"					"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemCost"						"5"
+	}
+
+	"item_harvest_cauliflower"
+	{
+		"ID"							"1256"
+		"BaseClass"						"item_datadriven"
+		"Effect" 						""
+		"AbilityTextureName"			"item_potato"
+		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemDisplayCharges"			"1"
+		"ItemInitialCharges"			"1"
+		"ItemRequiresCharges"			"1"
+		"ItemStackable"					"1"
+		"ItemSellable"					"1"
+		"ItemPermanent"					"1"
+		"ItemPurchasable"				"0"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemCost"						"10"
+	}
+
 }
