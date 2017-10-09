@@ -1,3 +1,4 @@
+require('items/item_seed_base')
 
 if CAddonFarmGameMode == nil then
 	CAddonFarmGameMode = class({})
