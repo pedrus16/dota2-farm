@@ -7,16 +7,23 @@ if CAddonFarmGameMode == nil then
 end
 
 function Precache( context )
-	--[[
-		Precache things we know we'll use.  Possible file types include (but not limited to):
-			PrecacheResource( "model", "*.vmdl", context )
-			PrecacheResource( "soundfile", "*.vsndevts", context )
-			PrecacheResource( "particle", "*.vpcf", context )
-			PrecacheResource( "particle_folder", "particles/folder", context )
-	]]
+	PrecacheResource( "model", "models/gameplay/cauliflower/*.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/corn/*.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/potato/*.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/soil/*.vmdl", context )
+
+	PrecacheResource( "model", "models/items/corn/*.vmdl", context )
+	PrecacheResource( "model", "models/items/potato/*.vmdl", context )
+	PrecacheResource( "model", "models/items/wood_log/*.vmdl", context )
+
 	PrecacheResource( "soundfile",  "soundevents/game_sounds.vsndevts", context)
-	PrecacheResource( "soundfile",  "soundevents/game_sounds_ui_imported.vsndevts", context)
 	PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts", context)
+	PrecacheResource( "soundfile",  "soundevents/game_sounds_ui_imported.vsndevts", context)
+
+	PrecacheResource( "particle", "particles/items2_fx/ward_spawn_generic_b.vpcf", context )
+	PrecacheResource( "particle", "particles/mouse_square.vpcf", context )
+	PrecacheResource( "particle", "particles/status_fx/status_effect_naga_riptide.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_tidehunter/tidehunter_gush_splash_water7_low.vpcf", context )
 end
 
 -- Create the game mode when we activate
