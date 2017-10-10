@@ -1,3 +1,4 @@
+require('utils')
 require('items/utils')
 
 LinkLuaModifier( "modifier_plant", "modifiers/modifier_plant.lua", LUA_MODIFIER_MOTION_NONE )
@@ -51,7 +52,7 @@ function CAddonFarmGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetRecommendedItemsDisabled(true)
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(CAddonFarmGameMode, "OnNPCSpawned"), self)
 	ListenToGameEvent("tree_cut", Dynamic_Wrap(CAddonFarmGameMode, "OnTreeCut"), self)
-	self.units = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+	self.unitsKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")
 end
 
 -- Evaluate the state of the game
@@ -114,21 +115,10 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 		for i=1, 5 do hNPC:AddItemByName("item_seed_potato") end
 		for i=1, 5 do hNPC:AddItemByName("item_seed_corn") end
 	end
-	if self.units[hNPC:GetUnitName()] == nil then return end
-	local farmKV = self.units[hNPC:GetUnitName()]["Farm"]
+	if self.unitsKV[hNPC:GetUnitName()] == nil then return end
+	local farmKV = self.unitsKV[hNPC:GetUnitName()]["Farm"]
 	if farmKV == nil then return end
-	hNPC.plantDescription = {
-		duration = farmKV.GrowthDuration,
-		decayDuration = farmKV.DecayDuration,
-		harvestItem = farmKV.Harvest,
-		harvestCount = farmKV.HarvestCount,
-		models = farmKV.GrowthModels,
-		grownModel = farmKV.FullyGrownModel,
-		emptyModel = farmKV.HarvestedModel,
-		decayedModel = farmKV.DecayedModel,
-		permanent = farmKV.Permanent == 1,
-		nextHarvestDelay = farmKV.NextHarvestDelay
-	}
+	self:FillPlantDescription(hNPC, farmKV)
 end
 
 
@@ -160,4 +150,19 @@ function CAddonFarmGameMode:GetSoilAt( vLocation )
 		end
 	end
 	return nil
+end
+
+
+function CAddonFarmGameMode:FillPlantDescription( hUnit, hKV )
+	hUnit.plantDescription = {
+		growthDuration = farmKV.GrowthDuration,
+		timeBeforeDecay = farmKV.TimeBeforeDecay,
+		harvestItem = farmKV.HarvestItem,
+		harvest = farmKV.Harvest,
+		growthStagesModels = farmKV.GrowthStagesModels,
+		matureModel = farmKV.MatureModel,
+		harvestedModel = farmKV.HarvestedModel,
+		deadModel = farmKV.DeadModel,
+		timeBetweenHarvests = farmKV.TimeBetweenHarvests
+	}
 end

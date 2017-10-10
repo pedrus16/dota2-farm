@@ -102,19 +102,26 @@
 
 		"Farm"
 		{
-			"Harvest"					"item_harvest_corn"
-			"HarvestCount"				"3"
 			"GrowthDuration"			"2400"
-			"DecayDuration"				"960"
-			"NextHarvestDelay"			"1440"
-			"StagesModels"
+			"GrowthStagesModels"
 			{
 				"1"		"models/gameplay/corn/corn_00.vmdl"
 				"2"		"models/gameplay/corn/corn_01.vmdl"
 				"3"		"models/gameplay/corn/corn_02.vmdl"
 			}
+			"HarvestItem"				"item_harvest_corn"
+			"Harvest"
+			{
+				"1"		"0.5"
+				"2"		"0.2"
+				"3"		"0.75"
+			}
 			"MatureModel"				"models/gameplay/corn/corn_03_full.vmdl"
+			
+			"TimeBetweenHarvests"		"1440"
 			"HarvestedModel"			"models/gameplay/corn/corn_03.vmdl"
+
+			"TimeBeforeDecay"			"960"
 			"DeadModel"					"models/gameplay/corn/corn_dead.vmdl"
 		}
 	}
@@ -172,20 +179,22 @@
 
 		"Farm"
 		{
-			"Permanent"				"0"
-			"Harvest"				"item_seed_potato"
-			"HarvestCount"			"2"
-			"GrowthDuration"		"960"
-			"DecayDuration"			"960"
-			"GrowthModels"
+			"GrowthDuration"			"960"
+			"GrowthStagesModels"
 			{
-				"1"					"models/gameplay/potato/potato_00.vmdl"
-				"2"					"models/gameplay/potato/potato_01.vmdl"
-				"3"					"models/gameplay/potato/potato_01.vmdl"
+				"1"		"models/gameplay/potato/potato_00.vmdl"
+				"2"		"models/gameplay/potato/potato_01.vmdl"
 			}
-			"FullyGrownModel"		"models/gameplay/potato/potato_02.vmdl"
-			"HarvestedModel"		"models/gameplay/potato/potato_02.vmdl"
-			"DecayedModel"			"models/gameplay/potato/potato_dead.vmdl"
+			"HarvestItem"				"item_seed_potato"
+			"Harvest"
+			{
+				"1"		"0.5"
+				"2"		"0.5"
+			}
+			"MatureModel"				"models/gameplay/potato/potato_02.vmdl"
+			
+			"TimeBeforeDecay"			"960"
+			"DeadModel"					"models/gameplay/potato/potato_dead.vmdl"
 		}
 	}
 
@@ -242,20 +251,18 @@
 
 		"Farm"
 		{
-			"Permanent"				"0"
-			"Harvest"				"item_harvest_cauliflower"
-			"HarvestCount"			"2"
-			"GrowthDuration"		"960"
-			"DecayDuration"			"960"
-			"GrowthModels"
+			"GrowthDuration"			"960"
+			"GrowthStagesModels"
 			{
-				"1"					"models/gameplay/cauliflower/cauliflower_00.vmdl"
-				"2"					"models/gameplay/cauliflower/cauliflower_01.vmdl"
-				"3"					"models/gameplay/cauliflower/cauliflower_01.vmdl"
+				"1"		"models/gameplay/cauliflower/cauliflower_00.vmdl"
+				"2"		"models/gameplay/cauliflower/cauliflower_01.vmdl"
 			}
-			"FullyGrownModel"		"models/gameplay/cauliflower/cauliflower.vmdl"
-			"HarvestedModel"		"models/gameplay/cauliflower/cauliflower.vmdl"
-			"DecayedModel"			"models/gameplay/cauliflower/potato_dead.vmdl"
+			"HarvestItem"				"item_harvest_cauliflower"
+			"Harvest"					"1"
+			"MatureModel"				"models/gameplay/cauliflower/cauliflower.vmdl"
+			
+			"TimeBeforeDecay"			"960"
+			"DeadModel"					"models/gameplay/cauliflower/potato_dead.vmdl"
 		}
 	}
 }
