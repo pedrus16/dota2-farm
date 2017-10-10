@@ -61,14 +61,28 @@ function modifier_plant:OnIntervalThink()
 				else
 					hPlant.harvestProgress = hPlant.harvestProgress + ((delta * growthRate) / timeBetweenHarvests) * GROWTH_MULTIPLIER
 				end
-			elseif hPlant.growthProgress >= 0.75 then
-				hPlant:SetModel(hPlant.plantDescription.models["3"])
-			elseif hPlant.growthProgress >= 0.5 then
-				hPlant:SetModel(hPlant.plantDescription.models["2"])
-			elseif hPlant.growthProgress >= 0.25 then
-				hPlant:SetModel(hPlant.plantDescription.models["1"])
+			else
+				self:SetPlantModelFromProgress(hPlant)
 			end
 		end
+	end
+end
+
+
+function modifier_plant:SetModelFromProgress(hPlant)
+	local progress = hPlant.growthProgress
+	local models = hPlant.growthStagesModels
+	local stagesCount = #models + 1
+	local index = 1
+	local model = nil
+	for k, m in pairs(models) do
+		if progress >= index / stagesCount then
+			model = m
+		end
+		index = index + 1
+	end
+	if model then
+		hPlant:SetModel(model)
 	end
 end
 
@@ -86,6 +100,7 @@ function modifier_plant:UnitInteracts(hUnit)
 	end
 
 end
+
 
 function modifier_plant:DropHarvest(hUnit)
 	local hPlant = self:GetParent()
