@@ -62,7 +62,7 @@ function modifier_plant:OnIntervalThink()
 					hPlant.harvestProgress = hPlant.harvestProgress + ((delta * growthRate) / timeBetweenHarvests) * GROWTH_MULTIPLIER
 				end
 			else
-				self:SetPlantModelFromProgress(hPlant)
+				self:SetModelFromProgress(hPlant)
 			end
 		end
 	end
@@ -70,16 +70,15 @@ end
 
 
 function modifier_plant:SetModelFromProgress(hPlant)
-	local progress = hPlant.growthProgress
-	local models = hPlant.growthStagesModels
-	local stagesCount = #models + 1
+	local models = hPlant.plantDescription.growthStagesModels
+	local stagesCount = 1
 	local index = 1
 	local model = nil
-	for k, m in pairs(models) do
-		if progress >= index / stagesCount then
-			model = m
+	for _, v in pairs(models) do stagesCount = stagesCount + 1 end
+	for index = 1, stagesCount do
+		if hPlant.growthProgress >= (index / stagesCount) then
+			model = models[tostring(index)]
 		end
-		index = index + 1
 	end
 	if model then
 		hPlant:SetModel(model)

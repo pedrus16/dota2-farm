@@ -1,6 +1,5 @@
 function baseItemSeed( sPlantUnit )
 
-
 	local item_seed_base = class ({})
 
 

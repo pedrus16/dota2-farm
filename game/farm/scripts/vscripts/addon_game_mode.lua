@@ -1,7 +1,8 @@
 require('utils')
-require('items/utils')
+-- require('items/utils')
 
 LinkLuaModifier( "modifier_plant", "modifiers/modifier_plant.lua", LUA_MODIFIER_MOTION_NONE )
+
 
 if CAddonFarmGameMode == nil then
 	CAddonFarmGameMode = class({})
@@ -155,14 +156,14 @@ end
 
 function CAddonFarmGameMode:FillPlantDescription( hUnit, hKV )
 	hUnit.plantDescription = {
-		growthDuration = farmKV.GrowthDuration,
-		timeBeforeDecay = farmKV.TimeBeforeDecay,
-		harvestItem = farmKV.HarvestItem,
-		harvest = farmKV.Harvest,
-		growthStagesModels = farmKV.GrowthStagesModels,
-		matureModel = farmKV.MatureModel,
-		harvestedModel = farmKV.HarvestedModel,
-		deadModel = farmKV.DeadModel,
-		timeBetweenHarvests = farmKV.TimeBetweenHarvests
+		growthDuration = hKV.GrowthDuration,
+		timeBeforeDecay = hKV.TimeBeforeDecay,
+		harvestItem = hKV.HarvestItem,
+		harvest = hKV.Harvest,
+		growthStagesModels = hKV.GrowthStagesModels,
+		matureModel = hKV.MatureModel,
+		harvestedModel = hKV.HarvestedModel,
+		deadModel = hKV.DeadModel,
+		timeBetweenHarvests = hKV.TimeBetweenHarvests
 	}
 end

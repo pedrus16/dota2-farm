@@ -7,7 +7,7 @@ function randomWeightedChoice( hTable )
 		weight_sum = weight_sum + v
 	end
 	local random = RandomFloat(0, weight_sum)
-	for k, v in pairs(harvest) do
+	for k, v in pairs(hTable) do
 		if random < v then
 			return k
 		end

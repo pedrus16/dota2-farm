@@ -112,9 +112,9 @@
 			"HarvestItem"				"item_harvest_corn"
 			"Harvest"
 			{
-				"1"		"0.5"
+				"1"		"0.05"
 				"2"		"0.2"
-				"3"		"0.75"
+				"3"		"0.9"
 			}
 			"MatureModel"				"models/gameplay/corn/corn_03_full.vmdl"
 			
