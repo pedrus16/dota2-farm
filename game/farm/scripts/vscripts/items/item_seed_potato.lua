@@ -1,1 +1,1 @@
-item_seed_potato = class ({ plant = 'npc_dota_creature_plant_potato' }, nil, item_seed_base)
+item_seed_potato = baseItemSeed( 'npc_dota_creature_plant_potato' )

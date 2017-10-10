@@ -1,4 +1,6 @@
-require('items/item_seed_base')
+require('items/utils')
+
+LinkLuaModifier( "modifier_plant", "modifiers/modifier_plant.lua", LUA_MODIFIER_MOTION_NONE )
 
 if CAddonFarmGameMode == nil then
 	CAddonFarmGameMode = class({})
@@ -122,6 +124,7 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 	}
 end
 
+
 function CAddonFarmGameMode:OnTreeCut( event )
 	local vOrigin = Vector(event.tree_x, event.tree_y)
 	for i=1, 3 do
@@ -131,6 +134,7 @@ function CAddonFarmGameMode:OnTreeCut( event )
 		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, vOrigin + RandomVector(1):Normalized() * 16)
 	end
 end
+
 
 function CAddonFarmGameMode:GetSoilAt( vLocation )
 	unitsInTile = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
