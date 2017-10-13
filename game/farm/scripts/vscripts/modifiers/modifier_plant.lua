@@ -110,6 +110,7 @@ function modifier_plant:DropHarvest(hUnit)
 		local hPhysItem = CreateItemOnPositionSync(hPlant:GetAbsOrigin(), hItem)
 		hPhysItem:SetAngles(0, RandomInt(1, 360), 0)
 		hItem:LaunchLoot(false, RandomInt(64, 128), 0.4, hPlant:GetAbsOrigin() + RandomVector(1):Normalized() * 64)
+		hUnit:AddExperience(120, DOTA_ModifyXP_Unspecified, false, true)
 	end
 	hPlant.harvestCount = 0
 	if hPlant.plantDescription.timeBetweenHarvests ~= nil then

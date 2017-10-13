@@ -14,6 +14,9 @@
 		"ScriptFile" 					"abilities/ability_hoe"
 		"AbilityTextureName"			"hoe"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+
 	}
 
 	//=================================================================================================================
@@ -35,6 +38,8 @@
 				"duration"				"480.0"
 			}
 		}
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
 	}
 
 	//=================================================================================================================
@@ -48,6 +53,7 @@
 		"ScriptFile" 					"abilities/ability_refill_water"
 		"AbilityTextureName"			""
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"MaxLevel"						"1"
 	}
 
 	//=================================================================================================================
@@ -62,5 +68,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
 		"AbilityTextureName"			"axe"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
 	}
 }
