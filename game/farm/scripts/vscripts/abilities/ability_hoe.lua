@@ -14,7 +14,12 @@ end
 
 
 function farmer_hoe:GetCastPoint()
-	return 0.4
+	return self:GetSpecialValueFor('duration')
+end
+
+
+function farmer_hoe:GetPlaybackRateOverride()
+	return 0.43 / self:GetSpecialValueFor('duration')
 end
 
 

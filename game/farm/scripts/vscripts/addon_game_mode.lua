@@ -9,14 +9,30 @@ if CAddonFarmGameMode == nil then
 end
 
 function Precache( context )
-	PrecacheResource( "model", "models/gameplay/cauliflower/*.vmdl", context )
-	PrecacheResource( "model", "models/gameplay/corn/*.vmdl", context )
-	PrecacheResource( "model", "models/gameplay/potato/*.vmdl", context )
-	PrecacheResource( "model", "models/gameplay/soil/*.vmdl", context )
+	
+	PrecacheResource( "model", "models/gameplay/cauliflower/cauliflower.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/cauliflower/cauliflower_00.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/cauliflower/cauliflower_01.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/cauliflower/cauliflower_seed.vmdl", context )
 
-	PrecacheResource( "model", "models/items/corn/*.vmdl", context )
-	PrecacheResource( "model", "models/items/potato/*.vmdl", context )
-	PrecacheResource( "model", "models/items/wood_log/*.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/corn/corn_00.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/corn/corn_01.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/corn/corn_02.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/corn/corn_03.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/corn/corn_03_full.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/corn/corn_dead.vmdl", context )
+
+	PrecacheResource( "model", "models/gameplay/potato/potato_00.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/potato/potato_01.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/potato/potato_02.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/potato/potato_seed.vmdl", context )
+	PrecacheResource( "model", "models/gameplay/potato/potato_dead.vmdl", context )
+
+	PrecacheResource( "model", "models/gameplay/soil/soil.vmdl", context )
+
+	PrecacheResource( "model", "models/items/corn/corn_ear.vmdl", context )
+	PrecacheResource( "model", "models/items/potato/potato.vmdl", context )
+	PrecacheResource( "model", "models/items/wood_log/wood_log.vmdl", context )
 
 	PrecacheResource( "soundfile",  "soundevents/game_sounds.vsndevts", context)
 	PrecacheResource( "soundfile",  "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts", context)
@@ -102,6 +118,7 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 	if hNPC:IsRealHero() then
 		hNPC:HeroLevelUp(false)
 		hNPC:HeroLevelUp(false)
+		hNPC:AddExperience(600, DOTA_ModifyXP_Unspecified, false, false)
 		if hNPC:HasAbility("farmer_hoe") then
 			hNPC:UpgradeAbility(hNPC:FindAbilityByName("farmer_hoe"))
 		end
