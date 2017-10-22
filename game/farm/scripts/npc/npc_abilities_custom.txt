@@ -38,6 +38,9 @@
 		"ScriptFile" 					"abilities/ability_watering"
 		"AbilityTextureName"			"water"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"MaxLevel"						"1"
 		"AbilitySpecial"
 		{
 			"01"
@@ -51,8 +54,6 @@
 				"quantity"				"20 30 40 50"
 			}
 		}
-		"RequiredLevel"					"1"
-		"LevelsBetweenUpgrades"			"1"
 	}
 
 	//=================================================================================================================
@@ -83,5 +84,6 @@
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"RequiredLevel"					"1"
 		"LevelsBetweenUpgrades"			"1"
+		"MaxLevel"						"1"
 	}
 }

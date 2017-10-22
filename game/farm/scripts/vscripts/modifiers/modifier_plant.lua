@@ -53,6 +53,7 @@ function modifier_plant:OnIntervalThink()
 		if hPlant.decay >= 1 then
 			hPlant:SetModel(hPlant.plantDescription.deadModel)
 			hPlant.selectable = true
+			hPlant.harvestCount = 0
 			self:StartIntervalThink(-1)
 		elseif hPlant.harvestCount <= 0 then
 			if hPlant.growthProgress >= 1 then
@@ -89,7 +90,7 @@ end
 function modifier_plant:UnitInteracts(hUnit)
 	if IsServer() then
 		local hPlant = self:GetParent()
-		if hPlant.decay >= 1 then
+		if hPlant.decay and hPlant.decay >= 1 then
 			hPlant.soil.planted = nil
 			hPlant:Destroy()
 		end
@@ -103,6 +104,7 @@ end
 
 function modifier_plant:DropHarvest(hUnit)
 	local hPlant = self:GetParent()
+	print(hPlant.harvestCount)
 	for i=1, hPlant.harvestCount do
 		local hItem = CreateItem(hPlant.plantDescription.harvestItem, nil, nil)
 		hItem:SetPurchaser(hUnit)

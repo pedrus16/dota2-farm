@@ -118,7 +118,8 @@ function CAddonFarmGameMode:OnNPCSpawned( event )
 	if hNPC:IsRealHero() then
 		hNPC:HeroLevelUp(false)
 		hNPC:HeroLevelUp(false)
-		hNPC:AddExperience(600, DOTA_ModifyXP_Unspecified, false, false)
+		hNPC:HeroLevelUp(false)
+		hNPC:AddExperience(1080, DOTA_ModifyXP_Unspecified, false, false)
 		if hNPC:HasAbility("farmer_hoe") then
 			hNPC:UpgradeAbility(hNPC:FindAbilityByName("farmer_hoe"))
 		end
