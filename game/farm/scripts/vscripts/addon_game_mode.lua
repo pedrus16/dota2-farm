@@ -10,7 +10,8 @@ end
 
 function Precache( context )
 	
-	PrecacheResource( "model", "models/gameplay/cauliflower/cauliflower.vmdl", context )
+	PrecacheResource( "model", "models/props_structures/radiant_statue001.vmdl", context )
+	
 	PrecacheResource( "model", "models/gameplay/cauliflower/cauliflower_00.vmdl", context )
 	PrecacheResource( "model", "models/gameplay/cauliflower/cauliflower_01.vmdl", context )
 	PrecacheResource( "model", "models/gameplay/cauliflower/cauliflower_seed.vmdl", context )

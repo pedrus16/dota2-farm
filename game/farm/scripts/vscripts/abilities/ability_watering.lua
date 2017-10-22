@@ -62,10 +62,7 @@ end
 
 
 function farmer_watering:CastFilterResultTarget( hTarget )
-	if IsClient() then 
-		return UF_SUCCESS 
-	end
-	if hTarget == nil or hTarget:GetUnitName() ~= "npc_dota_creature_building_well" then
+	if hTarget and hTarget:GetUnitName() ~= "npc_dota_creature_building_well" then
 		return UF_FAIL_CUSTOM
 	end
 	return UF_SUCCESS
@@ -73,12 +70,6 @@ end
 
 
 function farmer_watering:GetCustomCastErrorTarget( hTarget )
-	if IsClient() then 
-		return "" 
-	end
-	if hTarget == nil or hTarget:GetUnitName() ~= "npc_dota_creature_building_well" then
-		return "#dota_hud_error_must_cast_on_water_point"
-	end
 	return ""
 end
 
@@ -89,7 +80,12 @@ function farmer_watering:OnSpellStart()
 	local hSoil = GameRules.AddonFarm:GetSoilAt(vPosition)
 	local hTarget = self:GetCursorTarget()
 	
-	if hTarget == nil then
+	if hTarget and hTarget:GetUnitName() == "npc_dota_creature_building_well" then
+		-- Refill watering can
+		local hModifier = self:GetCaster():FindModifierByName("modifier_watering_can")
+		if hModifier == nil then return end
+		hModifier:Refill()
+	else
 		-- Pour water
 		if hSoil == nil then return end
 		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_tidehunter/tidehunter_gush_splash_water7_low.vpcf", PATTACH_WORLDORIGIN, nil )
@@ -98,11 +94,6 @@ function farmer_watering:OnSpellStart()
 		local duration = self:GetSpecialValueFor("duration")
 		local hModifier = hSoil:AddNewModifier( hCaster, self, "modifier_watered", { duration = duration })
 		self:ConsumeWater()
-	else
-		-- Refill watering can
-		local hModifier = self:GetCaster():FindModifierByName("modifier_watering_can")
-		if hModifier == nil then return end
-		hModifier:Refill()
 	end
 end
 

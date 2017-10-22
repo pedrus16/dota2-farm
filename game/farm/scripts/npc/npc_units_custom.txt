@@ -273,7 +273,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/buildings/building_plain_reference.vmdl"
+		"Model"						"models/props_structures/radiant_statue001.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"Level"						"1"
 		"ModelScale" 				"1"
