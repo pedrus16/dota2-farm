@@ -5,8 +5,10 @@
 	{		
 		"addon_game_name"							"Farming Simulator"
 		"DOTA_Hud_error_ground_already_hoed"		"Ground already ploughed"
-		"DOTA_Hud_error_must_cast_on_hoed_ground"	"Must cast on ploughed ground"
+		"DOTA_Hud_error_must_cast_on_hoed_ground"	"Must plant on ploughed ground"
 		"DOTA_Hud_error_soil_has_seed"				"Soil already seeded"
+		"DOTA_Hud_error_empty"						"No water left"
+		"DOTA_Hud_error_must_cast_on_water_point"	"Must refill on water point"
 
 		"DOTA_Tooltip_ability_farmer_hoe"			"Hoe"
 		"DOTA_Tooltip_ability_farmer_watering"		"Watering Can"
@@ -15,13 +17,15 @@
 		"DOTA_Tooltip_ability_item_seed_corn"		"Corn Seed"
 		"DOTA_Tooltip_ability_item_harvest_corn"	"Corn Ear"
 		"DOTA_Tooltip_ability_item_seed_potato"		"Potato"
+		"DOTA_Tooltip_ability_item_seed_carrot"		"Carrot Seed"
+		"DOTA_Tooltip_ability_item_harvest_carrot"	"Carrot"
 		"DOTA_Tooltip_ability_item_wood_log"		"Wood Log"
 
 		"DOTA_Tooltip_modifier_watered"				"Watered"
-		"DOTA_Tooltip_modifier_watering_can"		"Water"
 
 		"npc_dota_creature_soil"					"Soil"
 		"npc_dota_creature_plant_corn"				"Corn Plant"
 		"npc_dota_creature_plant_potato"			"Potato Plant"
+		"npc_dota_creature_plant_carrot"			"Carrot Plant"
 	}
 }

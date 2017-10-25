@@ -8,6 +8,7 @@
         "item"      "item_seed_potato"
         "item"      "item_seed_corn"
         "item"      "item_seed_cauliflower"
+        "item"      "item_seed_carrot"
     }
 
     "attributes"
